@@ -1,0 +1,21 @@
+{
+  "name": "shade",
+  "version": "1.0.0",
+  "description": "Shade bot for Discord.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node-dev .",
+    "compile": "tsc",
+    "prodtest": "node dist/index.js",
+    "prod": "tsc && node dist/index.js"
+  },
+  "author": "BlixerDev",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.7.0",
+    "typescript": "^4.6.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8"
+  }
+}
