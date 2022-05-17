@@ -18,6 +18,6 @@ There's a secrets.json file inside of the ./src folder, where you store private 
 ```
 
 ## Useful links
-[Discord.js official guide](https://discordjs.guide/#before-you-begin)
-[Discord.js official documentation](https://discord.js.org/#/docs/discord.js/stable/general/welcome)
-[Discord.js official Discord Server](https://discord.gg/djs)
+- [Discord.js official guide](https://discordjs.guide/#before-you-begin)
+- [Discord.js official documentation](https://discord.js.org/#/docs/discord.js/stable/general/welcome)
+- [Discord.js official Discord Server](https://discord.gg/djs)
