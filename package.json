@@ -1,21 +1,22 @@
 {
   "name": "shade",
   "version": "1.0.0",
-  "description": "Shade bot for Discord.",
-  "main": "src/index.ts",
+  "description": "Shade, my personal Discord bot.",
+  "main": "src/index.js",
   "scripts": {
-    "start": "ts-node-dev .",
-    "compile": "tsc",
-    "prodtest": "node dist/index.js",
-    "prod": "tsc && node dist/index.js"
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blixerdev/shade.git"
   },
   "author": "BlixerDev",
   "license": "ISC",
-  "dependencies": {
-    "discord.js": "^13.7.0",
-    "typescript": "^4.6.4"
+  "bugs": {
+    "url": "https://github.com/blixerdev/shade/issues"
   },
-  "devDependencies": {
-    "ts-node-dev": "^1.1.8"
+  "homepage": "https://github.com/blixerdev/shade#readme",
+  "dependencies": {
+    "discord.js": "^13.7.0"
   }
 }
