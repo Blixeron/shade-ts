@@ -5,7 +5,7 @@ const Command = require("../../bot/classes/command");
 module.exports = new Command({
     data: {
         name: "evaluate",
-        description: "Evaluate code in JavaScript or TypeScript.",
+        description: "Evaluate code in JavaScript.",
         options: [
             {
                 name: "code",
@@ -18,7 +18,7 @@ module.exports = new Command({
 
     ownerOnly: true,
 
-    run: async ({ interaction }) => {
+    run: async ({ client, interaction }) => {
         let code = interaction.options.getString("code");
         let replyContent;
 
@@ -28,7 +28,7 @@ module.exports = new Command({
         try {
             let output = util.inspect(eval(code));
             if (output.length > 4096) {
-                replyContent = "Wow, that Output! I can't show it here, as it's length is over 4096 characters.";
+                replyContent = "Wow, that Output! I can't show it here, as its length is over 4096 characters.";
             } else {
                 replyContent = "Here's the result of your evaluation:";
                 embed.setDescription(`\`\`\`js\n${output}\`\`\``);

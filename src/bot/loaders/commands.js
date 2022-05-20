@@ -17,10 +17,7 @@ module.exports = {
 
                 /** @type {Command}*/
                 let command = await require(`../../commands/${folder}/${file}`);
-
                 client.commands.set(command.data.name, command);
-
-                module.exports = command;
             }
         });
 

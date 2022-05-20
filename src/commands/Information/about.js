@@ -11,14 +11,14 @@ module.exports = new Command({
     run: async ({ client, interaction }) => {
         let embed = new discord.MessageEmbed;
 
+        embed.setThumbnail(client.user.avatarURL({ size: 1024, format: "png", dynamic: true }));
         embed.setTitle("Information about me");
         embed.addFields(
             {
                 name: "General Information",
                 value:
                     `
-**Up since:** <t:${Math.ceil(client.readyTimestamp / 1000)}:F>
-**Users I'm helping:** ${client.users.cache.filter(user => user.bot).size}
+**Users I'm helping:** ${client.users.cache.filter(user => !user.bot).size}
 **Servers I'm on:** ${client.guilds.cache.size}
 **Total categories:** ${client.categories.size}
 **Total commands:** ${client.commands.size}

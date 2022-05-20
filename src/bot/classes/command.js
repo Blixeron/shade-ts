@@ -4,7 +4,7 @@ const Shade = require("../client");
 /** 
  * @typedef {Object} RunOptions
  * @property {Shade} client
- * @property {discord.CommandInteraction | discord.ContextMenuInteraction} interaction 
+ * @property {discord.CommandInteraction | discord.ContextMenuInteraction} interaction
  */
 
 /** @typedef {(options: RunOptions) => any} RunFunction */
@@ -12,7 +12,7 @@ const Shade = require("../client");
 /**
  * @typedef {{
  *     data: discord.ApplicationCommandDataResolvable;
- *     memberPermissions?: discord.PermissionResolvable[];
+ *     permission?: discord.PermissionString;
  *     ownerOnly?: boolean;
  *     run: RunFunction;
  * }} CommandOptions

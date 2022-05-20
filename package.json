@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/blixerdev/shade#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "discord.js": "^13.7.0"
   }
 }

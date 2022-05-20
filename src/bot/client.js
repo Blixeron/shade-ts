@@ -13,7 +13,12 @@ module.exports = class Shade extends discord.Client {
     guild = secrets.guild;
 
     constructor() {
-        super({ intents: [discord.Intents.FLAGS.GUILDS] });
+        super({
+            intents: [
+                discord.Intents.FLAGS.GUILDS,
+                discord.Intents.FLAGS.GUILD_MESSAGES
+            ]
+        });
     }
 
     async start() {

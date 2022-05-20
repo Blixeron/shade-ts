@@ -9,6 +9,9 @@ module.exports = new Command({
     run: async ({ interaction }) => {
         let target = await interaction.guild.members.fetch(interaction.targetId);
 
-        return interaction.reply(target.user.avatarURL({ size: 1024, format: "png", dynamic: true }));
+        return interaction.reply({
+            content: target.user.avatarURL({ size: 1024, format: "png", dynamic: true }),
+            ephemeral: true
+        });
     }
 });

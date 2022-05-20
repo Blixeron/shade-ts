@@ -4,7 +4,7 @@ const Shade = require("../client");
 /**
  * @typedef {Object} EventData
  * @property {keyof discord.ClientEvents} name
- * @property {(client: Shade, interaction: discord.CommandInteraction) => void} run 
+ * @property {(client: Shade, any) => void} run
  */
 
 module.exports = class Event {

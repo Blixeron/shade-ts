@@ -13,11 +13,12 @@ module.exports = new Command({
             }
         ]
     },
+
     run: async ({ client, interaction }) => {
         let target = interaction.options.getUser("target");
 
         if (!target) {
-            target = interaction.user
+            target = interaction.user;
         }
 
         return interaction.reply(target.avatarURL({ size: 1024, format: "png", dynamic: true }));

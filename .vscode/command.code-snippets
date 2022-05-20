@@ -1,14 +1,7 @@
 {
-	// Place your área de trabajo de shade snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-	// Example:
 	"Command Template": {
 		"scope": "javascript,typescript",
-		"prefix": "command",
+		"prefix": "cmd",
 		"body": [
 			"const Command = require(\"../../bot/classes/command\");",
 			"",
@@ -23,5 +16,31 @@
 			"});",
 		],
 		"description": "Create a basic command template."
+	},
+	"Command Template with 1 option": {
+		"scope": "javascript,typescript",
+		"prefix": "cmd1option",
+		"body": [
+			"const Command = require(\"../../bot/classes/command\");",
+			"",
+			"module.exports = new Command({",
+			"data: {",
+			"name: \"name\",",
+			"description: \"description\",",
+			"options: [",
+			"{",
+			"name: \"name\",",
+			"description: \"description\",",
+			"type: \"type\",",
+			"}",
+			"]",
+			"},",
+			"",
+			"run: async ({ interaction }) => {",
+			"return interaction.reply();",
+			"}",
+			"});",
+		],
+		"description": "Create a basic command template with 1 option."
 	}
 }
