@@ -12,7 +12,7 @@ const Shade = require("../client");
 /**
  * @typedef {{
  *     data: discord.ApplicationCommandDataResolvable;
- *     permission?: discord.PermissionString;
+ *     permission?: discord.PermissionResolvable;
  *     ownerOnly?: boolean;
  *     run: RunFunction;
  * }} CommandOptions
@@ -22,7 +22,7 @@ module.exports = class Command {
     /** @type {discord.ApplicationCommandDataResolvable} */
     data;
     /** @type {discord.PermissionResolvable} */
-    memberPermissions;
+    permission;
     /** @type {boolean} */
     ownerOnly;
     /** @type {RunFunction} */
@@ -32,4 +32,4 @@ module.exports = class Command {
     constructor(commandOptions) {
         Object.assign(this, commandOptions);
     }
-}
+};

@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const secrets = require("../secrets.json");
+const Command = require("./classes/command");
 const commands = require("./loaders/commands");
 const events = require("./loaders/events");
 
@@ -26,4 +27,4 @@ module.exports = class Shade extends discord.Client {
         commands.load(this);
         events.load(this);
     }
-}
+};

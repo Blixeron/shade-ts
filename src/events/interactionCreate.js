@@ -36,7 +36,7 @@ module.exports = new Event({
             return interaction.reply({
                 content: replyContent,
                 ephemeral: true
-            })
+            });
         }
     }
 });

@@ -12,6 +12,12 @@ module.exports = new Command({
                 description: "Write the code to evaluate.",
                 type: "STRING",
                 required: true
+            },
+            {
+                name: "ephemeral",
+                description: "Should I make the reply ephemeral?",
+                type: "BOOLEAN",
+                required: false
             }
         ]
     },
@@ -20,6 +26,7 @@ module.exports = new Command({
 
     run: async ({ client, interaction }) => {
         let code = interaction.options.getString("code");
+        let ephemeralValue = interaction.options.getBoolean("ephemeral");
         let replyContent;
 
         let embed = new discord.MessageEmbed;
@@ -38,6 +45,6 @@ module.exports = new Command({
             embed.setDescription(`\`\`\`prolog\n${error}\`\`\``);
         }
 
-        return interaction.reply({ content: replyContent, embeds: [embed] });
+        return interaction.reply({ content: replyContent, embeds: [embed], ephemeral: ephemeralValue });
     }
 });

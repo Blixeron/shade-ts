@@ -1,26 +1,25 @@
 const fs = require("fs");
-const path = require("path");
 const Shade = require("../client");
 const Command = require("../classes/command");
 
 module.exports = {
     /** @param {Shade} client */
     async load(client) {
-        let commandPath = path.join(__dirname, "..", "..", "commands");
+        for (let folder of fs.readdirSync("./src/commands")) {
+            let files = fs.readdirSync(`./src/commands/${folder}`);
 
-        fs.readdirSync(commandPath).forEach(async (folder) => {
-            for (let file of fs.readdirSync(`${commandPath}/${folder}`)) {
-                client.categories.set(folder, {
-                    name: folder,
-                    commands: file
-                });
+            client.categories.set(folder, {
+                name: folder,
+                commands: files.map(file => file.slice(0, -3)),
+            });
 
+            for (let file of files) {
                 /** @type {Command}*/
-                let command = await require(`../../commands/${folder}/${file}`);
-                client.commands.set(command.data.name, command);
+                let command = require(`../../commands/${folder}/${file}`);
+                client.commands.set(command.data, command);
             }
-        });
+        }
 
         console.log("Commands loaded.");
     }
-}
+};

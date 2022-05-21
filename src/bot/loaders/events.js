@@ -6,9 +6,7 @@ const Event = require("../classes/event");
 module.exports = {
     /** @param {Shade} client */
     async load(client) {
-        let eventPath = path.join(__dirname, "..", "..", "events");
-
-        for (let file of fs.readdirSync(eventPath)) {
+        for (let file of fs.readdirSync("./src/events")) {
             /** @type {Event} */
             let event = await require(`../../events/${file}`);
 
@@ -17,4 +15,4 @@ module.exports = {
 
         console.log("Events loaded.");
     }
-}
+};
