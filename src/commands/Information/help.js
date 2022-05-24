@@ -24,7 +24,9 @@ module.exports = new Command({
 
         if (!query) {
             embed.setTitle("All commands");
-            client.categories.map(category => {
+            client.categories.filter(
+                category => category.name != "Owner" && category.name != "Context Menu"
+            ).map(category => {
                 embed.addFields({
                     name: category.name,
                     value: `/${category.commands.map(command => `${command}`).join(", /")}`
@@ -34,7 +36,9 @@ module.exports = new Command({
 
             return interaction.reply({ embeds: [embed] });
         } else {
-            let command = client.commands.find(command => command.data.name == query);
+            let command = client.commands.find(
+                command => command.data.name == query
+            );
 
             if (!command) {
                 return interaction.reply({
@@ -51,6 +55,7 @@ module.exports = new Command({
 **Name:** ${command.data.name}
 **Description:** ${command.data.description}
 **Category:** ${client.categories.find(category => category.commands.includes(query)).name}
+**Permission required:** ${permissions[command.permission] || "No permission is required to use this command."}
                             `
                     },
                     {
@@ -60,9 +65,9 @@ module.exports = new Command({
                                 option => option.type == "SUB_COMMAND"
                             ).map(
                                 subcommand => `**- ${toCase(subcommand.name)}:** ${subcommand.description}\n${subcommand.options?.map(
-                                    option => `> **${toCase(option.name)}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
-                                ).join("  \n")}`
-                            ).join('\n') || "This command doesn't have any subcommands."}`
+                                    option => `> **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
+                                ).join("\n")}`
+                            ).join('\n\n') || "This command doesn't have any subcommands."}`
                     },
                     {
                         name: "Command Options",
@@ -70,7 +75,7 @@ module.exports = new Command({
                             `${command.data.options?.filter(
                                 option => option.type != "SUB_COMMAND"
                             ).map(
-                                option => `**- ${toCase(option.name)}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
+                                option => `**- ${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
                             ).join('\n') || "This command doesn't have any options."}`
                     }
                 );

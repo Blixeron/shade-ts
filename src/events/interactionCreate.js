@@ -23,20 +23,6 @@ module.exports = new Event({
             });
         }
 
-        let replyContent;
-        try {
-            return command.run({ client, interaction });
-        } catch (error) {
-            if (interaction.user.id === client.developer) {
-                console.log(error);
-                replyContent = "An error occurred while running this command. Check your terminal to see the error log.";
-            } else {
-                replyContent = "An error occurred while running this command. Contact my developer.";
-            }
-            return interaction.reply({
-                content: replyContent,
-                ephemeral: true
-            });
-        }
+        return command.run({ client, interaction });
     }
 });

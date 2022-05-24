@@ -14,7 +14,26 @@ module.exports = new Command({
                 options: [
                     {
                         name: "username",
-                        description: "The username of the account you want to check information about.",
+                        description: "The username of the account.",
+                        type: "STRING",
+                        required: true
+                    }
+                ]
+            },
+            {
+                name: "repository",
+                description: "Check information about a GitHub repository.",
+                type: "SUB_COMMAND",
+                options: [
+                    {
+                        name: "username",
+                        description: "The username of the account that owns the repository.",
+                        type: "STRING",
+                        required: true
+                    },
+                    {
+                        name: "repo_name",
+                        description: "The name of the repository.",
                         type: "STRING",
                         required: true
                     }
@@ -27,11 +46,11 @@ module.exports = new Command({
         let username = interaction.options.getString("username");
         let embed = new discord.MessageEmbed;
 
-        if (interaction.options.getSubcommand("account")) {
+        if (interaction.options.getSubcommand() == "account") {
             try {
                 /** @type {axios.Axios} */
                 let account = await axios.get(`https://api.github.com/users/${username}`);
-                embed.setTitle("GitHub Information");
+                embed.setTitle("GitHub Account");
                 embed.setThumbnail(account.data.avatar_url);
                 embed.addFields(
                     {
@@ -45,7 +64,7 @@ module.exports = new Command({
 **Location:** ${account.data.location || "No location provided."}
 **Company:** ${account.data.company || "No company provided."}
 **Twitter:** ${`[${account.data.twitter_username}](https://twitter.com/${account.data.twitter_username})` || "No twitter account provided."}
-                                `
+                            `
                     },
                     {
                         name: "Account Information",
@@ -79,6 +98,8 @@ module.exports = new Command({
                     ephemeral: true
                 });
             }
+        } else if (interaction.options.getSubcommand() == "repository") {
+            return interaction.reply("Work in progress.");
         }
     }
 });

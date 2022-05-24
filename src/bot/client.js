@@ -10,8 +10,8 @@ module.exports = class Shade extends discord.Client {
     /** @type {discord.Collection<string, Command>} */
     commands = new discord.Collection;
 
-    developer = secrets.developer;
-    guild = secrets.guild;
+    developer = secrets.discord.developer;
+    guild = secrets.discord.guild;
 
     constructor() {
         super({
@@ -23,7 +23,7 @@ module.exports = class Shade extends discord.Client {
     }
 
     async start() {
-        await this.login(secrets.token);
+        await this.login(secrets.discord.token);
         commands.load(this);
         events.load(this);
     }

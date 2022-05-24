@@ -16,7 +16,7 @@ module.exports = {
             for (let file of files) {
                 /** @type {Command}*/
                 let command = require(`../../commands/${folder}/${file}`);
-                client.commands.set(command.data, command);
+                client.commands.set(command.data.name, command);
             }
         }
 

@@ -39,7 +39,7 @@ module.exports = new Command({
                 name: "Connection Information",
                 value:
                     `
-**Up since:** <t:${Math.ceil(interaction.client.readyTimestamp / 1000)}:F> <t:${Math.ceil(interaction.client.readyTimestamp / 1000)}:R>
+**Up since:** <t:${Math.ceil(interaction.client.readyTimestamp / 1000)}:F>
 **Websocket lantency:** ${interaction.client.ws.ping}ms.
                     `
             },

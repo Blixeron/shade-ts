@@ -10,9 +10,16 @@ Clone this repository, and run this command in your terminal, once you're inside
 There's a secrets.json file inside of the ./src folder, where you store private information. I can't show mine, but here's how it looks like:
 ```json
 {
-    "token": "Your bot's token.",
-    "developer": "Your own ID.",
-    "guild": "The server you're going to register the commands to. Also referred as 'Development Server.'"
+    "discord": {
+        "token": "Your bot's token.",
+        "developer": "Your own ID.",
+        "guild": "The server you're going to register the commands to. Also referred as 'Development Server.'"
+    },
+    "twitter": {
+        "api_key": "Your Twitter application Ley.",
+        "api_key_secret": "Your Twitter application Secret Key.",
+        "token": "Your Twitter application Bearer Token."
+    }
 }
 ```
 
