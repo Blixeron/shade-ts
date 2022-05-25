@@ -17,7 +17,8 @@ module.exports = class Shade extends discord.Client {
         super({
             intents: [
                 discord.Intents.FLAGS.GUILDS,
-                discord.Intents.FLAGS.GUILD_MESSAGES
+                discord.Intents.FLAGS.GUILD_MESSAGES,
+                discord.Intents.FLAGS.GUILD_PRESENCES
             ]
         });
     }

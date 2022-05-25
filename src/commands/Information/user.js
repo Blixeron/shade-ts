@@ -1,7 +1,8 @@
 const Command = require("../../bot/classes/command");
+const secrets = require("../../secrets.json");
+const statuses = require("../../validations/statuses.json");
 const discord = require("discord.js")
 const axios = require("axios");
-const secrets = require("../../secrets.json");
 
 module.exports = new Command({
     data: {
@@ -21,8 +22,12 @@ module.exports = new Command({
         let target = interaction.options.getUser("target") || interaction.member.user;
         let user = await client.users.fetch(target.id);
         let member = interaction.guild.members.cache.get(target.id);
-        let res = await axios.get(`https://discord.com/api/users/${target.id}`, { headers: { Authorization: `Bot ${secrets.discord.token}` } });
         let embed = new discord.MessageEmbed;
+        let res = await axios.get(`https://discord.com/api/users/${target.id}`, {
+            headers: {
+                Authorization: `Bot ${secrets.discord.token}`
+            }
+        });
 
         embed.setTitle(`${user.bot ? "Bot" : "User"} Information`);
         embed.setThumbnail(user.displayAvatarURL({ format: 'png', size: 1024, dynamic: true }));
@@ -59,6 +64,14 @@ module.exports = new Command({
 **Avatar:** [Member](${member.displayAvatarURL({ format: "png", size: 1024, dynamic: true })})
 **Joined at:** <t:${Math.ceil(member.joinedTimestamp / 1000)}:F>
 **Boosting status:** ${member.premiumSince ? `Boosting since <t:${Math.ceil(member.premiumSinceTimestamp / 1000)}:F>` : "Not boosting."}
+                        `
+                },
+                {
+                    name: "Status and Presence",
+                    value:
+                        `
+**Status:** ${statuses[member.presence.status]}
+**Custom status:** ${member.presence.activities[0]?.state}
                         `
                 }
             );

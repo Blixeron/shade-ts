@@ -35,7 +35,7 @@ module.exports = new Command({
                     },
                     {
                         name: "amount",
-                        description: "How much tweets should I search for?",
+                        description: "How many tweets should I search for?",
                         type: "NUMBER",
                         required: true
                     }
@@ -77,19 +77,19 @@ module.exports = new Command({
                         name: "Account Profile",
                         value:
                             `
-** Username:** ${account.body.data[0].username}
-** Nickname:** ${account.body.data[0].name}
-** Biography:** ${account.body.data[0].description || "No biography provided."}
-** Location:** ${account.body.data[0].location || "No location provided."}
+**Username:** ${account.body.data[0].username}
+**Nickname:** ${account.body.data[0].name}
+**Biography:** ${account.body.data[0].description || "No biography provided."}
+**Location:** ${account.body.data[0].location || "No location provided."}
                     `
                     },
                     {
                         name: "Account Information",
                         value:
                             `
-** Account ID:** ${account.body.data[0].id}
-** Verified:** ${account.body.data[0].verified ? "Yes" : "No"}
-** Created at:** <t:${new Date(account.body.data[0].created_at).getTime() / 1000}:F>
+**Account ID:** ${account.body.data[0].id}
+**Verified:** ${account.body.data[0].verified ? "Yes" : "No"}
+**Created at:** <t:${new Date(account.body.data[0].created_at).getTime() / 1000}:F>
                     `
                     },
                     {

@@ -2,7 +2,7 @@ const Command = require("../../bot/classes/command");
 
 module.exports = new Command({
     data: {
-        name: "Avatar",
+        name: "User Avatar",
         type: "USER"
     },
 

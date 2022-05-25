@@ -34,6 +34,7 @@ module.exports = new Command({
 
         try {
             let output = util.inspect(eval(code));
+
             if (output.length > 4096) {
                 replyContent = "Wow, that Output! I can't show it here, as its length is over 4096 characters.";
             } else {
