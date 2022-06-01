@@ -1,7 +1,7 @@
 const Command = require("../../bot/classes/command");
 const secrets = require("../../secrets.json");
 const statuses = require("../../validations/statuses.json");
-const discord = require("discord.js")
+const discord = require("discord.js");
 const axios = require("axios");
 
 module.exports = new Command({
@@ -39,7 +39,7 @@ module.exports = new Command({
 **Username:** ${user.username}
 **Discriminator:** #${user.discriminator}
 **Avatar:** [Default](${user.displayAvatarURL({ format: 'png', size: 1024, dynamic: true })})
-**Banner:** ${res.data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${res.data.banner}.${res.data.banner.startsWith("a_") ? "gif" : "png"}?size=1024)` : res.data.banner_color || "None"}
+**Banner:** ${res.data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${res.data.banner}.${res.data.banner.startsWith("a_") ? "gif" : "png"}?size=1024)` : res.data.banner_color || "None."}
                     `
             },
             {
@@ -71,7 +71,7 @@ module.exports = new Command({
                     value:
                         `
 **Status:** ${statuses[member.presence.status]}
-**Custom status:** ${member.presence.activities[0]?.state}
+**Custom status:** ${member.presence.activities[0]?.state || "No custom status has been set."}
                         `
                 }
             );
