@@ -7,7 +7,7 @@ module.exports = new Command({
         options: [
             {
                 name: "choice",
-                description: "3 rules: Rock beats Scissors, Paper beats Rock, and Scissors beats Rock.",
+                description: "3 rules: Rock beats Scissors, Paper beats Rock, and Scissors beats Paper.",
                 type: "STRING",
                 choices: [
                     { name: "Rock", value: "Rock" },
@@ -28,25 +28,25 @@ module.exports = new Command({
         switch (userChoice) {
             case "Rock": {
                 switch (myChoice) {
-                    case "Rock": { answer = "**Tie!**" } break;
-                    case "Paper": { answer = "**I won!**" } break;
-                    case "Scissors": { answer = "**You won!**" } break;
+                    case "Rock": { answer = "**Tie!**"; } break;
+                    case "Paper": { answer = "**I won!**"; } break;
+                    case "Scissors": { answer = "**You won!**"; } break;
                 }
             } break;
 
             case "Paper": {
                 switch (myChoice) {
-                    case "Rock": { answer = "**You won**" } break;
-                    case "Paper": { answer = "**Tie**" } break;
-                    case "Scissors": { answer = "**I won!**" } break;
+                    case "Rock": { answer = "**You won**"; } break;
+                    case "Paper": { answer = "**Tie**"; } break;
+                    case "Scissors": { answer = "**I won!**"; } break;
                 }
             } break;
 
             case "Scissors": {
                 switch (myChoice) {
-                    case "Rock": { answer = "**I won!**" } break;
-                    case "Paper": { answer = "**You won!**" } break;
-                    case "Scissors": { answer = "**Tie**" } break;
+                    case "Rock": { answer = "**I won!**"; } break;
+                    case "Paper": { answer = "**You won!**"; } break;
+                    case "Scissors": { answer = "**Tie**"; } break;
                 }
             } break;
         }

@@ -46,6 +46,7 @@ module.exports = new Command({
                     ephemeral: true
                 });
             } else {
+                embed.setFooter({ text: "⚠️ = Required option." });
                 embed.setTitle(toCase(query));
                 embed.addFields(
                     {
@@ -64,8 +65,8 @@ module.exports = new Command({
                             `${command.data.options?.filter(
                                 option => option.type == "SUB_COMMAND"
                             ).map(
-                                subcommand => `**- ${toCase(subcommand.name)}:** ${subcommand.description}\n${subcommand.options?.map(
-                                    option => `> **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
+                                subcommand => `**${toCase(subcommand.name)}:** ${subcommand.description}\n${subcommand.options?.map(
+                                    option => `├── **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '⚠️' : ''}`
                                 ).join("\n")}`
                             ).join('\n\n') || "This command doesn't have any subcommands."}`
                     },
@@ -75,7 +76,7 @@ module.exports = new Command({
                             `${command.data.options?.filter(
                                 option => option.type != "SUB_COMMAND"
                             ).map(
-                                option => `**- ${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '(Required)' : ''}`
+                                option => `├── **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '⚠️' : ''}`
                             ).join('\n') || "This command doesn't have any options."}`
                     }
                 );

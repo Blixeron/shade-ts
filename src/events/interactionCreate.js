@@ -17,7 +17,7 @@ module.exports = new Event({
         }
 
         if (command.permission) {
-            await checking.permissions(command, interaction);
+            await checking.permissionsAuto(command, interaction);
         } else return command.run({ client, interaction });
     }
 });

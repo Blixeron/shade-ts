@@ -44,6 +44,7 @@ module.exports = new Command({
 
     run: async ({ interaction }) => {
         let username = interaction.options.getString("username");
+        let repoName = interaction.options.getString("repo_name");
         let embed = new discord.MessageEmbed;
 
         if (interaction.options.getSubcommand() == "account") {
@@ -63,7 +64,7 @@ module.exports = new Command({
 **Email:** ${account.data.email || "No email provided."}
 **Location:** ${account.data.location || "No location provided."}
 **Company:** ${account.data.company || "No company provided."}
-**Twitter:** ${`[${account.data.twitter_username}](https://twitter.com/${account.data.twitter_username})` || "No twitter account provided."}
+**Twitter:** ${account.data.twitter_username ? `[${account.data.twitter_username}](https://twitter.com/${account.data.twitter_username})` : "No twitter account provided."}
                             `
                     },
                     {
@@ -99,7 +100,52 @@ module.exports = new Command({
                 });
             }
         } else if (interaction.options.getSubcommand() == "repository") {
-            return interaction.reply("Work in progress.");
+            try {
+                /** @type {axios.Axios} */
+                let repo = await axios.get(`https://api.github.com/repos/${username}/${repoName}`);
+                embed.setTitle("GitHub Repository");
+                embed.addFields(
+                    {
+                        name: "General Information",
+                        value:
+                            `
+**Name:** ${repo.data.name}
+**Full name:** ${repo.data.full_name}
+**Description:** ${repo.data.description}
+**Owner:** [${repo.data.owner.login}](${repo.data.owner.html_url})
+                            `
+
+                    },
+                    {
+                        name: "Technical Information",
+                        value:
+                            `
+**Language:** ${repo.data.language || "No language defined."}
+**Is fork:** ${repo.data.is_fork ? "Yes." : "No."}
+**Topics:** ${repo.data.topics.join(", ")}
+**Clone URL:** ${repo.data.clone_url}
+**Created at:** <t:${new Date(repo.data.created_at).getTime() / 1000}>
+**Updated at:** <t:${new Date(repo.data.updated_at).getTime() / 1000}
+                            `
+                    },
+                    {
+                        name: "Links",
+                        value:
+                            `
+**Overview:** [Overview](${repo.data.svn_url})
+**Issues:** [Issues](${repo.data.svn_url}/issues) (${repo.data.open_issues} Open)
+**Forks:** [Forks](${repo.data.svn_url}/forks) (${repo.data.forks})
+                            `
+                    }
+                );
+
+                return interaction.reply({ embeds: [embed] });
+            } catch (err) {
+                return interaction.reply({
+                    content: "I couldn't find that repository in GitHub's database.",
+                    ephemeral: true
+                });
+            }
         }
     }
 });

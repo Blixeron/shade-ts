@@ -29,7 +29,7 @@ module.exports = new Command({
                 value:
                     `
 **Developer:** [Blixer](https://twitter.com/BlixerDev)
-**Language:** JavaScript
+**Language:** JavaScript <:javascript:979384383641366528>
 **Library:** discord.js${package.dependencies["discord.js"]}
 **Node:** ${process.version}
 **Dependencies:** ${Object.keys(package.dependencies).length}

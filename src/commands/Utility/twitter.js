@@ -21,25 +21,6 @@ module.exports = new Command({
                         required: true
                     }
                 ]
-            },
-            {
-                name: "tweets",
-                description: "Check someone's tweets.",
-                type: "SUB_COMMAND",
-                options: [
-                    {
-                        name: "username",
-                        description: "The username of the account.",
-                        type: "STRING",
-                        required: true
-                    },
-                    {
-                        name: "amount",
-                        description: "How many tweets should I search for?",
-                        type: "NUMBER",
-                        required: true
-                    }
-                ]
             }
         ]
     },
@@ -54,7 +35,7 @@ module.exports = new Command({
                 usernames: username,
                 "user.fields": "created_at,description,location,profile_image_url,public_metrics,verified",
                 "expansions": "pinned_tweet_id"
-            }
+            };
 
             let account = await needle("get", endpointURL, params, {
                 headers: {
@@ -67,7 +48,7 @@ module.exports = new Command({
                 interaction.reply({
                     content: "I couldn't find that account in Twitter's database.",
                     ephemeral: true
-                })
+                });
             } else {
 
                 embed.setTitle("Twitter Account");
@@ -105,9 +86,6 @@ module.exports = new Command({
 
                 return interaction.reply({ embeds: [embed] });
             }
-
-        } else {
-            return interaction.reply("Work in progress...");
         }
     }
 });
