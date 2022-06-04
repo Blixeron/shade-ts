@@ -13,10 +13,16 @@ module.exports = class Shade extends discord.Client {
     developer = secrets.discord.developer;
     guild = secrets.discord.guild;
 
+    loadModules() {
+        commands.load(this);
+        events.load(this);
+    }
+
     constructor() {
         super({
             intents: [
                 discord.Intents.FLAGS.GUILDS,
+                discord.Intents.FLAGS.GUILD_MEMBERS,
                 discord.Intents.FLAGS.GUILD_MESSAGES,
                 discord.Intents.FLAGS.GUILD_PRESENCES
             ]
@@ -25,7 +31,6 @@ module.exports = class Shade extends discord.Client {
 
     async start() {
         await this.login(secrets.discord.token);
-        commands.load(this);
-        events.load(this);
+        this.loadModules();
     }
 };

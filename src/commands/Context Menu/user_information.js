@@ -6,24 +6,15 @@ const axios = require("axios");
 
 module.exports = new Command({
     data: {
-        name: "user",
-        description: "Check information about a Discord user.",
-        options: [
-            {
-                name: "target",
-                description: "Select who you want to check information about.",
-                type: "USER",
-                required: false
-            }
-        ]
+        name: "User Information",
+        type: "USER"
     },
 
     run: async ({ client, interaction }) => {
-        let target = interaction.options.getUser("target") || interaction.member.user;
-        let user = await client.users.fetch(target.id);
-        let member = interaction.guild.members.cache.get(target.id);
+        let user = await client.users.fetch(interaction.targetId);
+        let member = interaction.guild.members.cache.get(interaction.targetId);
         let embed = new discord.MessageEmbed;
-        let res = await axios.get(`https://discord.com/api/users/${target.id}`, {
+        let res = await axios.get(`https://discord.com/api/users/${interaction.targetId}`, {
             headers: {
                 Authorization: `Bot ${secrets.discord.token}`
             }
@@ -50,33 +41,28 @@ module.exports = new Command({
 **Type:** ${user.bot ? "Bot" : "User"}
 **Created at:** <t:${Math.ceil(user.createdTimestamp / 1000)}:F>
                     `
-            }
-        );
-
-        if (interaction.guild.members.cache.has(target.id)) {
-            embed.addFields(
-                {
-                    name: "Guild Profile",
-                    value:
-                        `
+            },
+            {
+                name: "Guild Profile",
+                value:
+                    `
 **Nickname:** ${member.nickname || "No nickname has been set."}
 **Roles:** ${member.roles.cache.sort((a, b) => b.position - a.position).filter((role) => role !== interaction.guild.roles.everyone).map((role) => role).join(" ") || `None.`}
 **Avatar:** [Member](${member.displayAvatarURL({ format: "png", size: 1024, dynamic: true })})
 **Joined at:** <t:${Math.ceil(member.joinedTimestamp / 1000)}:F>
 **Boosting status:** ${member.premiumSince ? `Boosting since <t:${Math.ceil(member.premiumSinceTimestamp / 1000)}:F>` : "Not boosting."}
-                        `
-                },
-                {
-                    name: "Status and Presence",
-                    value:
-                        `
+                    `
+            },
+            {
+                name: "Status and Presence",
+                value:
+                    `
 **Status:** ${statuses[member.presence?.status] || statuses["offline"]}
 **Custom status:** ${member.presence?.activities[0]?.state || "No custom status has been set."}
-                        `
-                }
-            );
-        }
+                    `
+            }
+        );
 
-        return interaction.reply({ embeds: [embed] });
+        return interaction.reply({ embeds: [embed], ephemeral: true });
     }
 });

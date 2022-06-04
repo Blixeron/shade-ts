@@ -51,11 +51,6 @@ module.exports = new Command({
             } break;
         }
 
-        return interaction.reply(
-            `
-${userChoice} vs. ${myChoice}
-${answer}
-            `
-        );
+        return interaction.reply(`${userChoice} vs. ${myChoice}\n${answer}`);
     }
 });

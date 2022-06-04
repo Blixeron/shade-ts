@@ -1,4 +1,6 @@
 {
+    "SUB_COMMAND": "Subcommand",
+    "SUB_COMMAND_GROUP": "Subcommand Group",
     "STRING": "Text",
     "INTEGER": "Integer",
     "BOOLEAN": "Boolean",

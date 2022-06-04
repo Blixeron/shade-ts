@@ -46,40 +46,62 @@ module.exports = new Command({
                     ephemeral: true
                 });
             } else {
-                embed.setFooter({ text: "⚠️ = Required option." });
-                embed.setTitle(toCase(query));
-                embed.addFields(
-                    {
-                        name: "General Inforamtion",
-                        value:
-                            `
+                embed.setTitle("Command Information");
+                embed.setDescription(
+                    `
 **Name:** ${command.data.name}
 **Description:** ${command.data.description}
 **Category:** ${client.categories.find(category => category.commands.includes(query)).name}
 **Permission required:** ${permissions[command.permission] || "No permission is required to use this command."}
-                            `
-                    },
-                    {
-                        name: "Command Subcommands",
-                        value:
-                            `${command.data.options?.filter(
-                                option => option.type == "SUB_COMMAND"
-                            ).map(
-                                subcommand => `**${toCase(subcommand.name)}:** ${subcommand.description}\n${subcommand.options?.map(
-                                    option => `├── **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '⚠️' : ''}`
-                                ).join("\n")}`
-                            ).join('\n\n') || "This command doesn't have any subcommands."}`
-                    },
-                    {
-                        name: "Command Options",
-                        value:
-                            `${command.data.options?.filter(
-                                option => option.type != "SUB_COMMAND"
-                            ).map(
-                                option => `├── **${option.name}:** ${option.description} (${optionTypes[option.type]}) ${option.required ? '⚠️' : ''}`
-                            ).join('\n') || "This command doesn't have any options."}`
-                    }
+                    `
                 );
+
+                if (command.data.options) {
+                    let options1 = [];
+
+                    for (let option1 of command.data.options) {
+                        let tree1 = {};
+                        let tree2 = {};
+                        let tree3 = {};
+                        let options2 = [];
+
+                        command.data.options.indexOf(option1) < command.data.options.length - 1 ? tree1 = { a: `├`, b: `│` } : tree1 = { a: `└`, b: ` ` };
+
+                        if (option1.options) {
+                            for (let option2 of option1.options) {
+                                let options3 = [];
+
+                                option1.options.indexOf(option2) < option1.options.length - 1 ? tree2 = { a: `├`, b: `│` } : tree2 = { a: `└`, b: ` ` };
+
+                                if (option2.options) {
+                                    for (let option3 of option2.options) {
+                                        option2.options.indexOf(option3) < option2.options.length - 1 ? tree3 = { a: `├`, b: `│` } : tree3 = { a: `└`, b: ` ` };
+
+                                        options3.push(`\n${tree1.b}   ${tree2.b}   ${tree3.a}── Name: "${option3.name}"
+${tree1.b}   ${tree2.b}   ${tree3.b}   Description: "${option3.description}"
+${tree1.b}   ${tree2.b}   ${tree3.b}   Type: ${optionTypes[option3.type]}
+${tree1.b}   ${tree2.b}   ${tree3.b}   Required: ${option3.required ? `Yes` : `No`}`);
+                                    }
+                                }
+
+                                options2.push(`\n${tree1.b}   ${tree2.a}── Name: "${option2.name}"
+${tree1.b}   ${tree2.b}   Description: "${option2.description}"
+${tree1.b}   ${tree2.b}   Type: ${optionTypes[option2.type]} ${option2.type == `SUB_COMMAND` ? (option2.options ? `\n${tree1.b}   ${tree2.b}   Options: ${options3.join(``)}` : ``) : `\n${tree1.b}   ${tree2.b}   Required: ${option2.required ? `Yes` : `No`}`}`);
+                            }
+                        }
+
+                        options1.push(`\n${tree1.a}── Name: "${option1.name}"
+${tree1.b}   Description: "${option1.description}"
+${tree1.b}   Type: ${optionTypes[option1.type]} ${(option1.type == `SUB_COMMAND` || option1.type == `SUB_COMMAND_GROUP`) ? (option1.options ? `\n${tree1.b}   Options: ${options2.join(``)}` : ``) : `\n${tree1.b}   Required: ${option1.required ? `Yes` : `No`}`}`);
+                    }
+
+                    let optionsEmbed = new discord.MessageEmbed;
+
+                    optionsEmbed.setTitle("Command Options");
+                    optionsEmbed.setDescription(`\`\`\`${options1.join("")}\`\`\``);
+
+                    return interaction.reply({ embeds: [embed, optionsEmbed] });
+                }
 
                 return interaction.reply({ embeds: [embed] });
             }
