@@ -2,44 +2,39 @@ const Command = require("../../main/classes/command");
 
 module.exports = new Command({
     data: {
-        name: "kick",
-        description: "Kick someone out of this server",
+        name: "unban",
+        description: "Ban someone from this server.",
         options: [
             {
                 name: "target",
-                description: "Select who you want to kick",
+                description: "Select who you want to unban.",
                 type: "USER",
                 required: true
             },
             {
                 name: "reason",
-                description: "Give a reason",
+                description: "Give a reason.",
                 type: "STRING",
                 required: false
             }
         ]
     },
 
-    guildOnly: true,
-    permission: "KICK_MEMBERS",
+    permission: "BAN_MEMBERS",
 
     run: async ({ client, interaction }) => {
         const target = interaction.options.getUser("target");
         const reason = interaction.options.getString("reason") || "No reason provided.";
-
         const user = await client.users.fetch(target.id);
-        const member = interaction.guild.members.cache.get(target.id);
 
-        if (interaction.guild.members.cache.has(target.id)) {
-            if (!client.check.hierarchy(target, interaction)) {
-                await target.kick(reason);
-                return interaction.reply(`**${member.user.tag}** has been kicked, because: "${reason}"`);
-            }
-        } else {
+        if (!(await interaction.guild.bans.fetch()).find(member => member.user.id == user.id)) {
             return interaction.reply({
-                content: `**${user.tag}** isn't currently in this server.`,
+                content: `**${user.tag}** isn't currently banned.`,
                 ephemeral: true
             });
         }
+
+        await interaction.guild.members.unban(target.id);
+        return interaction.reply(`**${user.tag}** has been unbanned, because: "${reason}"`);
     }
 });

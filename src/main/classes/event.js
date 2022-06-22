@@ -17,4 +17,4 @@ module.exports = class Event {
     constructor(eventOptions) {
         Object.assign(this, eventOptions);
     }
-}
+};

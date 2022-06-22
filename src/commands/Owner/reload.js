@@ -1,19 +1,21 @@
-const Command = require("../../bot/classes/command");
+const Command = require("../../main/classes/command");
 
 module.exports = new Command({
     data: {
         name: "reload",
-        description: "Reload the Commands and Events files.",
+        description: "Reload all the commands and events",
+        defaultPermission: false
     },
-
-    ownerOnly: true,
 
     run: async ({ client, interaction }) => {
         for (const file of Object.keys(require.cache).filter(file => !file.includes("node_modules"))) {
             try {
                 delete require.cache[file];
             } catch (err) {
-                console.log(err);
+                interaction.reply({
+                    content: `An error ocurred while relaoding **${file}**: ${err}`,
+                    ephemeral: true
+                });
             }
         }
 

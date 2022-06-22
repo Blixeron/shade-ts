@@ -11,18 +11,21 @@ const Shade = require("../client");
 
 /**
  * @typedef {{
- *     data: discord.ApplicationCommandDataResolvable;
+ *     data: discord.ApplicationCommandData;
  *     permission?: discord.PermissionResolvable;
+ *     guildOnly?: boolean;
  *     ownerOnly?: boolean;
  *     run: RunFunction;
  * }} CommandOptions
  */
 
 module.exports = class Command {
-    /** @type {discord.ApplicationCommandDataResolvable} */
+    /** @type {discord.ApplicationCommandData} */
     data;
     /** @type {discord.PermissionResolvable} */
     permission;
+    /** @type {boolean} */
+    guildOnly;
     /** @type {boolean} */
     ownerOnly;
     /** @type {RunFunction} */

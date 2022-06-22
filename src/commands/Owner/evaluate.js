@@ -1,21 +1,21 @@
-const discord = require("discord.js");
 const util = require("util");
-const Command = require("../../bot/classes/command");
+const Command = require("../../main/classes/command");
 
 module.exports = new Command({
     data: {
         name: "evaluate",
-        description: "Evaluate code in JavaScript.",
+        description: "Evaluate a JavaScript expression",
+        defaultPermission: false,
         options: [
             {
-                name: "code",
-                description: "Write the code to evaluate.",
+                name: "expression",
+                description: "The expression to evaluate",
                 type: "STRING",
                 required: true
             },
             {
                 name: "ephemeral",
-                description: "Should I make the reply ephemeral?",
+                description: "Whether the result should be sent as an ephemeral message",
                 type: "BOOLEAN",
                 required: false
             }
@@ -25,27 +25,33 @@ module.exports = new Command({
     ownerOnly: true,
 
     run: async ({ client, interaction }) => {
-        let code = interaction.options.getString("code");
-        let ephemeralValue = interaction.options.getBoolean("ephemeral");
-        let replyContent;
+        const expression = interaction.options.getString("expression");
+        const ephemeral = interaction.options.getBoolean("ephemeral");
 
-        let embed = new discord.MessageEmbed;
-        embed.addFields({ name: "Input", value: `\`\`\`js\n${code}\`\`\`` });
+        const resultEmbed = new client.embed;
+        const inputEmbed = new client.embed;
+
+        inputEmbed.setTitle("Original Expression");
+        inputEmbed.setDescription(`\`\`\`js\n${expression}\`\`\``);
 
         try {
-            let output = util.inspect(eval(code));
+            const result = util.inspect(eval(expression));
 
-            if (output.length > 4096) {
-                replyContent = "Wow, that Output! I can't show it here, as its length is over 4096 characters.";
+            if (result.length > 4096) {
+                resultEmbed.setTitle("Evaluation Result");
+                resultEmbed.setDescription(
+                    "```The result length is over 4096 characters, so it cannot be shown.```"
+                );
             } else {
-                replyContent = "Here's the result of your evaluation:";
-                embed.setDescription(`\`\`\`js\n${output}\`\`\``);
+                resultEmbed.setTitle("Evaluation Result");
+                resultEmbed.setDescription(`\`\`\`js\n${result}\n\`\`\``);
             }
-        } catch (error) {
-            replyContent = "I tried to evaluate your code, but an error ocurred.";
-            embed.setDescription(`\`\`\`prolog\n${error}\`\`\``);
-        }
 
-        return interaction.reply({ content: replyContent, embeds: [embed], ephemeral: ephemeralValue });
+            interaction.reply({ embeds: [inputEmbed, resultEmbed], ephemeral: ephemeral });
+        } catch (err) {
+            resultEmbed.setTitle("Evaluation Error");
+            resultEmbed.setDescription(`\`\`\`js\n${err}\n\`\`\``);
+            interaction.reply({ embeds: [inputEmbed, resultEmbed], ephemeral: ephemeral });
+        }
     }
 });

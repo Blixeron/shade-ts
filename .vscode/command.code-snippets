@@ -1,6 +1,6 @@
 {
 	"Command Template": {
-		"scope": "javascript,typescript",
+		"scope": "javascript",
 		"prefix": "cmd",
 		"body": [
 			"const Command = require(\"../../bot/classes/command\");",
@@ -18,7 +18,7 @@
 		"description": "Create a basic command template."
 	},
 	"Command Template with 1 option": {
-		"scope": "javascript,typescript",
+		"scope": "javascript",
 		"prefix": "cmd1option",
 		"body": [
 			"const Command = require(\"../../bot/classes/command\");",

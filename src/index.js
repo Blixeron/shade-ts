@@ -1,4 +1,4 @@
-const Shade = require("./bot/client");
+const Shade = require("./main/client");
 new Shade().start();
 
 process.on("uncaughtException", function (err) {

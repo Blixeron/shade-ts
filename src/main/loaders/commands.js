@@ -5,21 +5,22 @@ const Command = require("../classes/command");
 module.exports = {
     /** @param {Shade} client */
     async load(client) {
-        for (let folder of fs.readdirSync("./src/commands")) {
-            let files = fs.readdirSync(`./src/commands/${folder}`);
+        console.log("Loading commands...");
+
+        for (const folder of fs.readdirSync("./src/commands/")) {
+            const files = fs.readdirSync(`./src/commands/${folder}`);
 
             client.categories.set(folder, {
                 name: folder,
                 commands: files.map(file => file.slice(0, -3)),
             });
 
-            for (let file of files) {
+            for (const file of files) {
                 /** @type {Command}*/
-                let command = require(`../../commands/${folder}/${file}`);
+                const command = require(`../../commands/${folder}/${file}`);
                 client.commands.set(command.data.name, command);
+                console.log(`- ${command.data.name} loaded.`);
             }
         }
-
-        console.log("Commands loaded.");
     }
 };

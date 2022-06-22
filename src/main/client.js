@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const secrets = require("../secrets.json");
+const check = require("../utils/check");
 const Command = require("./classes/command");
 const commands = require("./loaders/commands");
 const events = require("./loaders/events");
@@ -12,6 +13,8 @@ module.exports = class Shade extends discord.Client {
 
     developer = secrets.discord.developer;
     guild = secrets.discord.guild;
+    embed = discord.MessageEmbed;
+    check = check;
 
     loadModules() {
         commands.load(this);
