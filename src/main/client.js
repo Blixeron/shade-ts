@@ -11,9 +11,10 @@ module.exports = class Shade extends discord.Client {
     /** @type {discord.Collection<string, Command>} */
     commands = new discord.Collection;
 
+    secrets = secrets;
     developer = secrets.discord.developer;
     guild = secrets.discord.guild;
-    embed = discord.MessageEmbed;
+    discord = discord;
     check = check;
 
     loadModules() {

@@ -1,10 +1,7 @@
 # Shade: My personal Discord Bot written in JavaScript, using Discord.js
 
-## Guide
-I tried to make this as friendly as posible for everyone. If you're new to this, maybe this can help you.
-
 ## Installation
-Clone this repository, and run this command in your terminal, once you're inside of the folder that has the bot: `npm install`, which will automatically install all the dependencies that the bot has.
+Clone this repository, and run this command in your terminal, once you're inside of the folder that has the bot files: `npm install`, which will automatically install all the dependencies that the bot has.
 
 ## secrets.json File
 There's a secrets.json file inside of the ./src folder, where you store private information. I can't show mine, but here's how it looks like:

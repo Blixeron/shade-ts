@@ -1,4 +1,3 @@
-const discord = require("discord.js");
 const Command = require("../../main/classes/command");
 const package = require("../../../package.json");
 
@@ -9,11 +8,11 @@ module.exports = new Command({
     },
 
     run: async ({ client, interaction }) => {
-        const embed = new client.embed;
-        const row = new discord.MessageActionRow;
+        const embed = new client.discord.MessageEmbed;
+        const row = new client.discord.MessageActionRow;
 
         row.addComponents(
-            new discord.MessageButton()
+            new client.discord.MessageButton()
                 .setLabel("GitHub Repository")
                 .setStyle("LINK")
                 .setURL("https://github.com/BlixerDev/shade")

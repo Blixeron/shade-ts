@@ -1,0 +1,13 @@
+{
+    "SUB_COMMAND": "Subcommand",
+    "SUB_COMMAND_GROUP": "Subcommand Group",
+    "STRING": "Text",
+    "INTEGER": "Integer",
+    "BOOLEAN": "Boolean",
+    "USER": "User",
+    "CHANNEL": "Channel",
+    "ROLE": "Role",
+    "MENTIONABLE": "Mentionable",
+    "NUMBER": "Number",
+    "ATTACHMENT": "Attachment"
+}

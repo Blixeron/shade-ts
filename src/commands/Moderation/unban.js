@@ -20,6 +20,7 @@ module.exports = new Command({
         ]
     },
 
+    guildOnly: true,
     permission: "BAN_MEMBERS",
 
     run: async ({ client, interaction }) => {

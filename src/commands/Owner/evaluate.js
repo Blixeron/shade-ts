@@ -28,8 +28,8 @@ module.exports = new Command({
         const expression = interaction.options.getString("expression");
         const ephemeral = interaction.options.getBoolean("ephemeral");
 
-        const resultEmbed = new client.embed;
-        const inputEmbed = new client.embed;
+        const resultEmbed = new client.discord.MessageEmbed;
+        const inputEmbed = new client.discord.MessageEmbed;
 
         inputEmbed.setTitle("Original Expression");
         inputEmbed.setDescription(`\`\`\`js\n${expression}\`\`\``);
