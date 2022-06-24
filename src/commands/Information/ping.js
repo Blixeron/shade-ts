@@ -7,11 +7,8 @@ module.exports = new Command({
     },
 
     run: async ({ client, interaction }) => {
-        const emojis = ["🏓", "🚀", "🔥", "😀", "💥"];
-        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-
         return interaction.reply(
-            `${emoji} Pong! Websocket latency is **${client.ws.ping}ms**, response time is **${Date.now() - interaction.createdTimestamp}ms** though.`
+            `Pong! Websocket latency is **${client.ws.ping}ms**, response time is **${Date.now() - interaction.createdTimestamp}ms** though.`
         );
     }
 });

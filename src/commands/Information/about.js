@@ -55,7 +55,7 @@ module.exports = new Command({
                 name: "Thanks",
                 value:
                     `
-[Napo](https://discord.com/users/759978790734004235), [Willyy](https://discord.com/users/356461130560045067) and [xFrak](https://discord.com/users/517729180054716416) for testing.
+**Napo**, **Willyy** and **xFrak** for testing.
                     `
             }
         );

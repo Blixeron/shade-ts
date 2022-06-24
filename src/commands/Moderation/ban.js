@@ -35,12 +35,12 @@ module.exports = new Command({
         const target = interaction.options.getUser("target");
         const reason = interaction.options.getString("reason") || "No reason provided.";
         const days = interaction.options.getInteger("clean");
-        
+
         const user = await client.users.fetch(target.id);
         const member = interaction.guild.members.cache.get(target.id);
 
         if (interaction.guild.members.cache.has(target.id)) {
-            if (!client.check.hierarchy(member, interaction)) {
+            if (!client.check.hierarchy(member, interaction, true)) {
                 await member.ban({ reason: reason, days: days });
             }
         } else {

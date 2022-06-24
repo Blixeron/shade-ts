@@ -42,15 +42,18 @@ module.exports = {
     /**
      * @param {discord.GuildMember} target
      * @param {discord.CommandInteraction} interaction
+     * @param {boolean} checkInteractionMember
      */
-    hierarchy(target, interaction) {
+    hierarchy(target, interaction, checkInteractionMember) {
         if (interaction.member.id != interaction.guild.ownerId) {
-            if (target.id == interaction.user.id) {
+            if (checkInteractionMember && target.id == interaction.user.id) {
                 return interaction.reply({
                     content: "You can't do that to yourself.",
                     ephemeral: true
                 });
-            } else if (target.id == interaction.guild.me.id) {
+            }
+
+            if (target.id == interaction.guild.me.id) {
                 return interaction.reply({
                     content: "You can't do that to me using my commands.",
                     ephemeral: true

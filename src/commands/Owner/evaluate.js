@@ -51,6 +51,7 @@ module.exports = new Command({
         } catch (err) {
             resultEmbed.setTitle("Evaluation Error");
             resultEmbed.setDescription(`\`\`\`js\n${err}\n\`\`\``);
+
             interaction.reply({ embeds: [inputEmbed, resultEmbed], ephemeral: ephemeral });
         }
     }

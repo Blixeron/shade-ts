@@ -31,7 +31,7 @@ module.exports = new Command({
         const member = interaction.guild.members.cache.get(target.id);
 
         if (interaction.guild.members.cache.has(target.id)) {
-            if (!client.check.hierarchy(target, interaction)) {
+            if (!client.check.hierarchy(target, interaction, true)) {
                 await target.kick(reason);
                 return interaction.reply(`**${member.user.tag}** has been kicked, because: "${reason}"`);
             }
