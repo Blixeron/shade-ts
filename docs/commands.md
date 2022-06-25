@@ -17,7 +17,7 @@ First of all, we use an `@type` declaration, which declares the type of the code
 
 For the `categories` Collection, we make a property of type `string`, which will be the name of the category. Inside of that property, we have two more: `name`, which is the name of the category (again), and `commands`, where all the commands names are stored inside of an Array.
 
-The delcarations for our `commands` Collection are more simple. We just add a property of type `string`, which represents the name of the command, and a property of type... `Command`? IIt's a class. In this case, a schema we follow every time we make a Command, which we use to use commands data more easily, as well as automatic type declarations.
+The delcarations for our `commands` Collection are more simple. We just add a property of type `string`, which represents the name of the command, and a property of type... `Command`? It's a class. In this case, a schema we follow every time we make a Command, which we use to use commands data more easily, as well as automatic type declarations.
 
 ## Command class
 Here's how the class works:
