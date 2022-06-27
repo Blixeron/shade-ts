@@ -28,7 +28,7 @@ module.exports = new Command({
         }).then(data => data.json());
 
         embed.setTitle(interaction.guild.name);
-        embed.setDescription(interaction.guild.description || null);
+        embed.setDescription(interaction.guild.description || "No description");
         embed.setThumbnail(interaction.guild.iconURL({ size: 1024, dynamic: true }));
         embed.setImage(interaction.guild.bannerURL({ size: 1024 }));
         embed.addFields(
