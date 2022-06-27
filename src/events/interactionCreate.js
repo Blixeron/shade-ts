@@ -8,7 +8,7 @@ module.exports = new Event({
     async run(client, interaction) {
         if (interaction.isCommand()) {
             const command = client.commands.get(interaction.commandName);
-            if (command.ownerOnly && interaction.user.id != client.developer) {
+            if (command.ownerOnly && interaction.user.id != client.application.owner.id) {
                 return interaction.reply({
                     content: "This command is only for my developer.",
                     ephemeral: true

@@ -69,7 +69,7 @@ Now, we create our Command Options, and by this I mean all the properties we wan
 - `permission` is a property where we select if a command shold require a permission, or not. `PermissionResolvable` gives us autocompletion for the permissions' names.
 - `guildOnly` we put here whether if the command can be executed only inside of servers (true), or not (false).
 - `ownerOnly` we put here whether if the command can only be executed by the bot owner (true) or if can be ran by everyone (false).
-- `run` the property of our Run Function where our code is located.
+- `run` is the property of our Run Function, where our code is located.
 
 We're almost done! Now we export the class `Command` and specify all the properties it has, those are the same we mentioned before. And that's it! By using it as a type for the `commands` Collection, we're just telling JavaScript that everything we put in that value, must be a valid Command.
 

@@ -25,10 +25,10 @@ module.exports = new Command({
                 name: "Counts",
                 value:
                     `
-> **Users:** ${client.users.cache.filter(user => !user.bot).size}
-> **Servers:** ${client.guilds.cache.size}
-> **Categories:** ${client.categories.size}
-> **Commands:** ${client.commands.size}
+**Users:** ${client.users.cache.filter(user => !user.bot).size}
+**Servers:** ${client.guilds.cache.size}
+**Categories:** ${client.categories.size}
+**Commands:** ${client.commands.size}
                     `,
                 inline: true
             },
@@ -36,10 +36,10 @@ module.exports = new Command({
                 name: "Development",
                 value:
                     `
-> **Developer:** [Blixer](https://twitter.com/BlixerDev)
-> **Language:** JavaScript
-> **Library:** discord.js${package.dependencies["discord.js"]}
-> **Dependencies:** ${Object.keys(package.dependencies).length}
+**Developer:** [Blixer](https://twitter.com/BlixerDev)
+**Language:** JavaScript
+**Library:** discord.js${package.dependencies["discord.js"]}
+**Dependencies:** ${Object.keys(package.dependencies).length}
                     `,
                 inline: true
             },
@@ -47,8 +47,8 @@ module.exports = new Command({
                 name: "Connection",
                 value:
                     `
-> **Up since:** <t:${Math.ceil(interaction.client.readyTimestamp / 1000)}:F>
-> **Lantency:** ${interaction.client.ws.ping}ms.
+**Up since:** <t:${Math.ceil(interaction.client.readyTimestamp / 1000)}:F>
+**Lantency:** ${interaction.client.ws.ping}ms.
                     `
             }
         );

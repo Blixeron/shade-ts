@@ -35,10 +35,10 @@ module.exports = new Command({
                 name: "Default",
                 value:
                     `
-> **ID:** ${target.id}
-> **Type:** ${target.bot ? "Bot" : "User"}
-> **Flags:** ${target.flags.toArray().map(flag => flags[flag]).join(", ") || "None"}
-> **Created at:** <t:${Math.ceil(target.createdTimestamp / 1000)}>
+**ID:** ${target.id}
+**Type:** ${target.bot ? "Bot" : "User"}
+**Flags:** ${target.flags.toArray().map(flag => flags[flag]).join(", ") || "None"}
+**Created at:** <t:${Math.ceil(target.createdTimestamp / 1000)}>
                     `,
                 inline: true
             }
@@ -52,10 +52,10 @@ module.exports = new Command({
                     name: "Server",
                     value:
                         `
-> **Nick:** ${member.nickname ? member.nickname.includes("`") ? client.discord.Util.escapeMarkdown(member.nickname) : member.nickname : "None"} 
-> **Roles:** ${member.roles.cache.sort((a, b) => b.position - a.position).filter(role => role != interaction.guild.roles.everyone).map(role => role).join(" ") || `None`}
-> **Boosting:** ${member.premiumSince ? `Since <t:${Math.ceil(target.premiumSinceTimestamp / 1000)}:F>` : "No"}
-> **Joined at:** <t:${Math.ceil(member.joinedTimestamp / 1000)}:F>
+**Nick:** ${member.nickname ? member.nickname.includes("`") ? client.discord.Util.escapeMarkdown(member.nickname) : member.nickname : "None"} 
+**Roles:** ${member.roles.cache.sort((a, b) => b.position - a.position).filter(role => role != interaction.guild.roles.everyone).map(role => role).join(" ") || `None`}
+**Boosting:** ${member.premiumSince ? `Since <t:${Math.ceil(target.premiumSinceTimestamp / 1000)}:F>` : "No"}
+**Joined at:** <t:${Math.ceil(member.joinedTimestamp / 1000)}:F>
                         `,
                     inline: true
                 },
@@ -63,8 +63,8 @@ module.exports = new Command({
                     name: "Status",
                     value:
                         `
-> **Status:** ${emojis.statuses[member.presence?.status] || emojis.statuses["offline"]}
-> **Custom status:** ${member.presence?.activities[0]?.state || "None"}
+**Status:** ${emojis.statuses[member.presence?.status] || emojis.statuses["offline"]}
+**Custom status:** ${member.presence?.activities[0]?.state || "None"}
                         `
                 }
             );
@@ -74,8 +74,8 @@ module.exports = new Command({
             name: "Links",
             value:
                 `
-> **Avatar:** [Default](https://cdn.discordapp.com/avatars/${target.id}/${data.avatar}.${data.avatar?.startsWith("a_") ? "gif" : "png"}?size=1024)
-> **Banner:** ${data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${data.banner}.${data.banner?.startsWith("a_" ? "gif" : "png")}?size=1024)` : `No custom banner, color is ${data.banner_color}`}
+**Avatar:** [Default](https://cdn.discordapp.com/avatars/${target.id}/${data.avatar}.${data.avatar?.startsWith("a_") ? "gif" : "png"}?size=1024)
+**Banner:** ${data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${data.banner}.${data.banner?.startsWith("a_" ? "gif" : "png")}?size=1024)` : data.banner_color ? `No custom banner, color is ${data.banner_color}` : "None"}
                 `
         });
 

@@ -50,7 +50,7 @@ module.exports = new Command({
                 const query = interaction.options.getString("command");
                 const command = client.commands.get(query);
 
-                if (!command || command.ownerOnly && interaction.user.id != client.developer) {
+                if (!command || command.ownerOnly && interaction.user.id != client.application.owner.id) {
                     return interaction.reply({
                         content: "No command with that name was found.",
                         ephemeral: true

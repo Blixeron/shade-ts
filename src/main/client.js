@@ -12,8 +12,6 @@ module.exports = class Shade extends discord.Client {
     commands = new discord.Collection;
 
     secrets = secrets;
-    developer = secrets.discord.developer;
-    guild = secrets.discord.guild;
     discord = discord;
     check = check;
 

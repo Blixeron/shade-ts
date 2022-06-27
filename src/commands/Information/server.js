@@ -36,18 +36,16 @@ module.exports = new Command({
                 name: "General",
                 value:
                     `
-> **ID**: ${interaction.guild.id}
-> **Owner:** <@${interaction.guild.ownerId}>
-> **Created at:** <t:${Math.ceil(interaction.guild.createdTimestamp / 1000)}>
+**ID**: ${interaction.guild.id}
+**Owner:** <@${interaction.guild.ownerId}>
+**Created at:** <t:${Math.ceil(interaction.guild.createdTimestamp / 1000)}>
                     `
             },
             {
-                name: "Roles",
+                name: `Roles (${interaction.guild.roles.cache.size})`,
                 value:
                     `
-> **Total:** ${interaction.guild.roles.cache.size}
-> **Highest:** ${interaction.guild.roles.highest}
-> **All:** ${roles}
+${roles}
                     `,
                 inline: true
             },
@@ -55,20 +53,19 @@ module.exports = new Command({
                 name: "Counts",
                 value:
                     `
-\`\`\`
-│  Channels:
-│  ├─── Text: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_TEXT').size}
-│  ├─── Voice: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_VOICE').size}
-│  ├─── Announcement: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_NEWS').size}
-│  └─── Stage: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_STAGE_VOICE').size}
-│  Emojis and Stickers:
-│  ├─── Static: ${interaction.guild.emojis.cache.filter((emoji) => !emoji.animated).size}
-│  ├─── Animated: ${interaction.guild.emojis.cache.filter((emoji) => emoji.animated).size}
-│  └─── Stickers: ${interaction.guild.stickers.cache.size}
-└─ Other:
-   ├─── Members: ${interaction.guild.memberCount}
-   └─── Boosts: ${interaction.guild.premiumSubscriptionCount}
-\`\`\`
+**Channels**
+├── Text: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_TEXT').size}
+├── Voice: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_VOICE').size}
+├── Announcement: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_NEWS').size}
+└── Stage: ${interaction.guild.channels.cache.filter(c => c.type == 'GUILD_STAGE_VOICE').size}
+**Emojis and Stickers**
+├── Static: ${interaction.guild.emojis.cache.filter((emoji) => !emoji.animated).size}
+├── Animated: ${interaction.guild.emojis.cache.filter((emoji) => emoji.animated).size}
+└── Stickers: ${interaction.guild.stickers.cache.size}
+**Other**
+├── Humans: ${interaction.guild.members.cache.filter(member => !member.user.bot).size}
+├── Bots: ${interaction.guild.members.cache.filter(member => member.user.bot).size}
+└── Boosts: ${interaction.guild.premiumSubscriptionCount}
                     `,
                 inline: true
             },
@@ -76,9 +73,9 @@ module.exports = new Command({
                 name: "Security",
                 value:
                     `
-> **Verification Level:** ${serverSecurity.verification_level[interaction.guild.verificationLevel]}
-> **Explicit content filter:** ${serverSecurity.explicit_content_filter[interaction.guild.explicitContentFilter]}
-> **MFA Requirement:** ${serverSecurity.mfa_level[interaction.guild.mfaLevel]}
+**Verification Level:** ${serverSecurity.verification_level[interaction.guild.verificationLevel]}
+**Explicit content filter:** ${serverSecurity.explicit_content_filter[interaction.guild.explicitContentFilter]}
+**MFA Requirement:** ${serverSecurity.mfa_level[interaction.guild.mfaLevel]}
                     `,
             },
         );
