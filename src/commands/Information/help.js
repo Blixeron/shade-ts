@@ -47,10 +47,10 @@ module.exports = new Command({
                 return interaction.reply({ embeds: [embed] });
             }
             case "single": {
-                const query = interaction.options.getString("command");
+                const query = interaction.options.getString("command").toLowerCase();
                 const command = client.commands.get(query);
 
-                if (!command || command.ownerOnly && interaction.user.id != client.application.owner.id) {
+                if (!command) {
                     return interaction.reply({
                         content: "No command with that name was found.",
                         ephemeral: true

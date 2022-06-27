@@ -20,9 +20,11 @@ module.exports = new Command({
                 required: true,
                 choices: [
                     { name: "Emojify", value: "emojify" },
-                    { name: "Flip", value: "flip" }
+                    { name: "Flip", value: "flip" },
+                    { name: "Reverse", value: "reverse" },
+                    { name: "Sparklify", value: "sparklify" }
                 ]
-            }
+            },
         ]
     },
 
@@ -41,7 +43,7 @@ module.exports = new Command({
                     }
                 }
 
-                interaction.reply(`${input.join(" ")} ${emojis.all[Math.floor(Math.random() * emojis.all.length)]}`);
+                return interaction.reply(`${input.join(" ")} ${emojis.all[Math.floor(Math.random() * emojis.all.length)]}`.substring(0, 2000));
             } break;
 
             case "flip": {
@@ -52,7 +54,19 @@ module.exports = new Command({
                     )[0] || character
                 ).reverse();
 
-                interaction.reply(`${flippedText.join("")}`);
+                return interaction.reply(`${flippedText.join("")}`.substring(0, 2000));
+            } break;
+
+            case "reverse": {
+                const reversedText = interaction.options.getString("input").split("").reverse();
+
+                return interaction.reply(`${reversedText.join("")}`.substring(0, 2000));
+            } break;
+
+            case "sparklify": {
+                const sparklifiedText = interaction.options.getString("input").toUpperCase().split("");
+
+                return interaction.reply(`✨ ${String(sparklifiedText.join(" ")).substring(0, 1994)} ✨`);
             }
         }
     }

@@ -36,8 +36,8 @@ module.exports = new Command({
                 value:
                     `
 **ID:** ${target.id}
-**Type:** ${target.bot ? "Bot" : "User"}
-**Flags:** ${target.flags.toArray().map(flag => flags[flag]).join(", ") || "None"}
+**Type:** ${target.bot ? "Bot" : "Human"}
+**Flags:** ${target.flags.toArray().map(flag => flags[flag]).join(" ") || "None"}
 **Created at:** <t:${Math.ceil(target.createdTimestamp / 1000)}>
                     `,
                 inline: true
