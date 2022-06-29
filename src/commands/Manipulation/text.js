@@ -9,7 +9,7 @@ module.exports = new Command({
         options: [
             {
                 name: "input",
-                description: "Write the code to manipulate",
+                description: "Write the text to manipulate",
                 type: "STRING",
                 required: true
             },

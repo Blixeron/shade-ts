@@ -112,7 +112,7 @@ Then, we just make another `for-loop`, and declare the type of the files (which 
 
 The last step is setting the commands up in the collection, so we add the command names, and the entire command, inside of the `commands`Collection.
 
-In the client file, we just require the loader we just made, create a `loadModules` method, and use the `load` method inside of this one, to losd commands and events simultaneously. 
+In the client file, we just require the loader we just made, create a `loadModules` method, and use the `load` method inside of this one, to load commands and events simultaneously. 
 ```js
 loadModules() {
     commands.load(this);

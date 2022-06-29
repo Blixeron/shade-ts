@@ -9,13 +9,10 @@ There's a secrets.json file inside of the ./src folder, where you store private 
 {
     "discord": {
         "token": "Your bot's token.",
-        "developer": "Your own ID.",
         "guild": "The server you're going to register the commands to. Also referred as 'Development Server.'"
     },
     "twitter": {
-        "api_key": "Your Twitter application Ley.",
-        "api_key_secret": "Your Twitter application Secret Key.",
-        "token": "Your Twitter application Bearer Token."
+        "api_key": "Your Twitter application Key."
     }
 }
 ```

@@ -4,20 +4,12 @@ const emojis = require("../../utils/assets/emojis.json");
 
 module.exports = new Command({
     data: {
-        name: "user",
-        description: "Check information about a Discord user",
-        options: [
-            {
-                name: "target",
-                description: "Select a target, or ignore to check your own profile",
-                type: "USER",
-                required: false
-            }
-        ]
+        name: "User Information",
+        type: "USER"
     },
 
     run: async ({ client, interaction }) => {
-        const target = interaction.options.getUser("target") || interaction.user;
+        const target = await client.users.fetch(interaction.targetId);
         const data = await fetch(`https://discord.com/api/users/${target.id}`, {
             headers: {
                 Authorization: `Bot ${client.secrets.discord.token}`
@@ -35,7 +27,7 @@ module.exports = new Command({
                 value:
                     `
 **ID:** ${target.id}
-**Type:** ${target.bot ? "Bot" : "User"}
+**Type:** ${target.bot ? "Bot" : "Human"}
 **Flags:** ${target.flags.toArray().map(flag => emojis.flags[flag]).join(" ") || "None"}
 **Created at:** <t:${Math.ceil(target.createdTimestamp / 1000)}>
                     `,
@@ -74,10 +66,10 @@ module.exports = new Command({
             value:
                 `
 **Avatar:** [Default](https://cdn.discordapp.com/avatars/${target.id}/${data.avatar}.${data.avatar?.startsWith("a_") ? "gif" : "png"}?size=1024)
-**Banner:** ${data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${data.banner}.${data.banner?.startsWith("a_" ? "gif" : "png")}?size=1024)` : data.banner_color ? `No custom banner, color is ${data.banner_color.toUpperCase()}` : "None"}
+**Banner:** ${data.banner ? `[Default](https://cdn.discordapp.com/banners/${target.id}/${data.banner}.${data.banner?.startsWith("a_" ? "gif" : "png")}?size=1024)` : data.banner_color ? `No custom banner, color is ${data.banner_color}` : "None"}
                 `
         });
 
-        interaction.reply({ embeds: [embed] });
+        interaction.reply({ embeds: [embed], ephemeral: true });
     }
 });

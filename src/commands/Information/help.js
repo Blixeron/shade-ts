@@ -33,18 +33,22 @@ module.exports = new Command({
 
         switch (interaction.options.getSubcommand()) {
             case "all": {
+                const slashIcon = new client.discord.MessageAttachment("src/utils/assets/images/slash_icon.png");
+
                 embed.setTitle("Commands List");
+                embed.setThumbnail("attachment://slash_icon.png");
 
                 client.categories.filter(
-                    category => category.name != "Owner"
+                    category => category.name != "Owner" && category.name != "Context Menu"
                 ).map(category => {
                     embed.addFields({
                         name: category.name,
                         value: category.commands.map(command => command).join(", ")
                     });
                 });
+                embed.setFooter({ text: `Use the /help single subcommand for more information about a single command.` });
 
-                return interaction.reply({ embeds: [embed] });
+                return interaction.reply({ embeds: [embed], files: [slashIcon] });
             }
             case "single": {
                 const query = interaction.options.getString("command").toLowerCase();
@@ -56,7 +60,10 @@ module.exports = new Command({
                         ephemeral: true
                     });
                 } else {
+                    const slashIcon = new client.discord.MessageAttachment("src/utils/assets/images/slash_icon.png");
+
                     embed.setTitle("Command Information");
+                    embed.setThumbnail("attachment://slash_icon.png");
                     embed.setDescription(
                         `
 **Name:** ${command.data.name}
@@ -110,10 +117,10 @@ ${tree1.b}   Type: ${optionTypes[option1.type]} ${(option1.type == `SUB_COMMAND`
                         optionsEmbed.setTitle("Command Options");
                         optionsEmbed.setDescription(`\`\`\`${options1.join("")}\`\`\``);
 
-                        return interaction.reply({ embeds: [embed, optionsEmbed] });
+                        return interaction.reply({ embeds: [embed, optionsEmbed], files: [slashIcon] });
                     }
 
-                    return interaction.reply({ embeds: [embed] });
+                    return interaction.reply({ embeds: [embed], files: [slashIcon] });
                 }
             }
         }
