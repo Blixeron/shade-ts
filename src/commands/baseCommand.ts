@@ -37,30 +37,6 @@ export class BaseInteractionCommand<ParsedArgsFinished = Interaction.ParsedArgs>
             flags: MessageFlags.EPHEMERAL,
         });
     }
-
-    onValueError(context: Interaction.InteractionContext, args: Interaction.ParsedArgs, errors: Interaction.ParsedErrors) {
-        const embed = new Embed();
-        embed.setTitle(`⚠ ${this.error} Argument Error`);
-
-        const store: { [key: string]: string; } = {};
-
-        const description: Array<string> = ['Invalid Arguments' + '\n'];
-        for (let key in errors) {
-            const message = errors[key].message;
-            if (message in store) {
-                description.push(`**${key}**: Same error as **${store[message]}**`);
-            } else {
-                description.push(`**${key}**: ${message}`);
-            }
-            store[message] = key;
-        }
-
-        embed.setDescription(description.join('\n'));
-        return context.editOrRespond({
-            embed,
-            flags: MessageFlags.EPHEMERAL,
-        });
-    }
 }
 
 

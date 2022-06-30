@@ -63,7 +63,5 @@ export default class EvaluateCommand extends BaseSlashCommand<CommandArgs> {
         }
 
         context.editOrRespond({ embeds: [inputEmbed, resultEmbed], flags: args.ephemeral ? MessageFlags.EPHEMERAL : 0 });
-
-
     }
 }

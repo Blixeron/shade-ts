@@ -7,7 +7,7 @@ export default {
     execute(payload: GatewayClientEvents.MessageCreate) {
         if (payload.message.content.match(new RegExp(`^<@!?${payload.message.client.userId}>$`))) {
             payload.message.reply({
-                content: `Hello, I'm ${payload.message.client.user!.name}!`
+                content: `Hello, I'm ${payload.message.client.user?.name}!`
             });
         }
     }
