@@ -1,10 +1,4 @@
 {
-    "statuses": {
-        "online": "<:online:932734237487034378> Online",
-        "idle": "<:idle:932734218562310254> Idle",
-        "dnd": "<:dnd:932734228871905460> Do Not Disturb",
-        "offline": "<:offline:932734228121153597> Offline or Invisible"
-    },
     "all": [
         "😄",
         "😃",
