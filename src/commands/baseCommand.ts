@@ -16,7 +16,7 @@ export class BaseInteractionCommand<ParsedArgsFinished = Interaction.ParsedArgs>
         if (context.invoker.metadata && context.invoker.metadata.ownerOnly) {
             if (!context.user.isClientOwner) {
                 context.editOrRespond({
-                    content: `This command is only for my developer.`,
+                    content: "This command is only for my developer.",
                     flags: MessageFlags.EPHEMERAL,
                 });
 

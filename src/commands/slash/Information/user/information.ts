@@ -12,7 +12,7 @@ interface CommandArgs {
     target?: Structures.User | Structures.Member;
 }
 
-export default class UserInformationCommand extends BaseCommandOption {
+export class UserInformationCommand extends BaseCommandOption {
     name = "information";
     description = "Check information about a Discord user";
 

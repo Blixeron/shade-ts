@@ -14,7 +14,7 @@ interface CommandArgs {
 
 export const COMMAND_NAME = "help";
 
-export default class UserCommand extends BaseSlashCommand<CommandArgs> {
+export default class HelpCommand extends BaseSlashCommand<CommandArgs> {
     name = COMMAND_NAME;
     description = "Get help about how to use my commands";
 
@@ -36,7 +36,7 @@ export default class UserCommand extends BaseSlashCommand<CommandArgs> {
 
         if (args.command) {
             const command = context.client.interactionCommandClient?.commands.find(
-                (command) => command.name === args.command
+                (command) => command.name === args.command && !command.metadata.ownerOnly
             );
 
             if (!command) {
@@ -74,14 +74,14 @@ export default class UserCommand extends BaseSlashCommand<CommandArgs> {
                                     for (const option3 of option2.options) {
                                         option2.options.indexOf(option3) < option2.options.length - 1 ? tree3 = { a: `├`, b: `│` } : tree3 = { a: `└`, b: ` ` };
 
-                                        options3.push(`\n│${tree1.b}   ${tree2.b}   ${tree3.a}── Name: "${option3.name}"
+                                        options3.push(`\n${tree1.b}   ${tree2.b}   ${tree3.a}── Name: "${option3.name}"
 ${tree1.b}   ${tree2.b}   ${tree3.b}   Description: "${option3.description}"
 ${tree1.b}   ${tree2.b}   ${tree3.b}   Type: ${OptionTypes[option3.type]}
 ${tree1.b}   ${tree2.b}   ${tree3.b}   Required: ${option3.required ? "Yes" : "No"}`);
                                     }
                                 }
 
-                                options2.push(`\n│${tree1.b}   ${tree2.a}── Name: "${option2.name}"
+                                options2.push(`\n${tree1.b}   ${tree2.a}── Name: "${option2.name}"
 ${tree1.b}   ${tree2.b}   Description: "${option2.description}"
 ${tree1.b}   ${tree2.b}   Type: ${OptionTypes[option2.type]} ${option2.type == 1 ? (option2.options ? `\n${tree1.b}   ${tree2.b}   Options: ${options3.join("")}` : ``) : `\n${tree1.b}   ${tree2.b}   Required: ${option2.required ? `Yes` : `No`}`}`);
                             }

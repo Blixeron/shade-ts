@@ -9,7 +9,7 @@ for (const folder of fs.readdirSync(path.join(__dirname, "../../commands/slash")
     const files = fs.readdirSync(path.join(__dirname, `../../commands/slash/${folder}`));
 
     categories.set(folder, {
-        name: folder, commands: files.map(file => file.slice(0, -3))
+        name: folder, commands: files.map(file => file.replace(".ts", ""))
     });
 }
 
