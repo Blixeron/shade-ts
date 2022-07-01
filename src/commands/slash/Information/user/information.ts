@@ -4,18 +4,16 @@ import { Embed } from "detritus-client/lib/utils";
 
 import axios from "axios";
 
-import { DiscordUserFlags, DiscordStatus } from "../../../assets/constants";
+import { DiscordUserFlags, DiscordStatus } from "../../../../assets/constants";
 
-import { BaseSlashCommand } from "../../baseCommand";
+import { BaseCommandOption } from "../../../baseCommand";
 
 interface CommandArgs {
     target?: Structures.User | Structures.Member;
 }
 
-export const COMMAND_NAME = "user";
-
-export default class UserCommand extends BaseSlashCommand<CommandArgs> {
-    name = COMMAND_NAME;
+export default class UserInformationCommand extends BaseCommandOption {
+    name = "information";
     description = "Check information about a Discord user";
 
     constructor() {
@@ -25,7 +23,7 @@ export default class UserCommand extends BaseSlashCommand<CommandArgs> {
                     name: "target",
                     description: "Select a target, or ignore to check your own profile",
                     required: false,
-                    type: ApplicationCommandOptionTypes.USER,
+                    type: ApplicationCommandOptionTypes.USER
                 }
             ]
         });

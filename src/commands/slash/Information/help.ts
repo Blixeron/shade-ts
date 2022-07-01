@@ -6,7 +6,7 @@ import { BaseSlashCommand } from "../../baseCommand";
 
 import { OptionTypes } from "../../../assets/constants";
 
-import categories from "../../..";
+import categories from "../../../utils/collections/categories";
 
 interface CommandArgs {
     command?: string;

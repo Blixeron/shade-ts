@@ -4,14 +4,13 @@ import { BaseSlashCommand } from "../../baseCommand";
 
 import * as pkg from "../../../../package.json";
 import { readyTimestamp } from "../../../listeners/gatewayReady";
+import categories from "../../../utils/collections/categories";
 
 export const COMMAND_NAME = "about";
 
 export default class AboutCommand extends BaseSlashCommand {
     name = COMMAND_NAME;
     description = "Check information about me";
-
-    metadata = { category: "Information" };
 
     async run(context: Interaction.InteractionContext) {
         const embed = new Embed;
@@ -30,6 +29,7 @@ export default class AboutCommand extends BaseSlashCommand {
         embed.addField("Counts", `
 **Users:** ${context.client.users.filter(user => !user.bot).length}
 **Servers:** ${context.client.guilds.cache.size}
+**Categories:** ${categories.size}
 **Commands:** ${context.client.interactionCommandClient!.commands.size}
 **Shards:** ${context.client.shardCount}
         `, true);

@@ -1,5 +1,4 @@
 import { ClusterClient, InteractionCommandClient } from "detritus-client";
-import { BaseCollection } from "detritus-client/lib/collections";
 import { ActivityTypes, PresenceStatuses } from 'detritus-client/lib/constants';
 
 import fs from "fs";
@@ -20,18 +19,6 @@ const cluster = new ClusterClient(config.token, {
         }
     }
 });
-
-const categories = new BaseCollection<string, { name: string, commands: string[]; }>;
-
-for (const folder of fs.readdirSync(path.join(__dirname, "./commands/slash"))) {
-    const files = fs.readdirSync(path.join(__dirname, `./commands/slash/${folder}`));
-
-    categories.set(folder, {
-        name: folder, commands: files.map(file => file.slice(0, -3))
-    });
-}
-
-export default categories;
 
 (async () => {
     await cluster.run();
