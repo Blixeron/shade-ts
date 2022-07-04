@@ -1,6 +1,5 @@
 import { Constants, Interaction, Structures, Utils } from 'detritus-client';
 const { ApplicationCommandTypes, ApplicationCommandOptionTypes, MessageFlags } = Constants;
-const { Embed, Markup } = Utils;
 
 export class BaseInteractionCommand<ParsedArgsFinished = Interaction.ParsedArgs> extends Interaction.InteractionCommand<ParsedArgsFinished> {
     error = 'Command';
@@ -27,15 +26,12 @@ export class BaseInteractionCommand<ParsedArgsFinished = Interaction.ParsedArgs>
         return true;
     }
 
-    onRunError(context: Interaction.InteractionContext, args: ParsedArgsFinished, error: any) {
-        const embed = new Embed();
-        embed.setTitle(`⚠ ${this.error} Error`);
-        embed.setDescription(Markup.codestring(String(error)));
+    onBeforeRun(context: Interaction.InteractionContext, args: ParsedArgsFinished) {
+        return true;
+    }
 
-        return context.editOrRespond({
-            content: `${this.error} Error: ${Markup.codestring(String(error))}`,
-            flags: MessageFlags.EPHEMERAL,
-        });
+    onRunError(context: Interaction.InteractionContext, args: ParsedArgsFinished, error: any) {
+        console.log(error);
     }
 }
 

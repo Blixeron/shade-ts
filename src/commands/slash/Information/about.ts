@@ -6,10 +6,8 @@ import * as pkg from "../../../../package.json";
 import { readyTimestamp } from "../../../listeners/gatewayReady";
 import categories from "../../../utils/collections/categories";
 
-export const COMMAND_NAME = "about";
-
 export default class AboutCommand extends BaseSlashCommand {
-    name = COMMAND_NAME;
+    name = "about";
     description = "Check information about me";
 
     async run(context: Interaction.InteractionContext) {

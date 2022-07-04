@@ -11,10 +11,8 @@ interface CommandArgs {
     ephemeral: boolean;
 }
 
-export const COMMAND_NAME = "evaluate";
-
-export default class EvaluateCommand extends BaseSlashCommand<CommandArgs> {
-    name = COMMAND_NAME;
+export default class EvaluateCommand extends BaseSlashCommand {
+    name = "evaluate";
     description = "Evaluate some code";
 
     metadata = { ownerOnly: true };
@@ -26,7 +24,7 @@ export default class EvaluateCommand extends BaseSlashCommand<CommandArgs> {
                     name: "code",
                     description: "The code to evaluate",
                     required: true,
-                    type: ApplicationCommandOptionTypes.STRING
+                    type: ApplicationCommandOptionTypes.STRING,
                 },
                 {
                     name: "ephemeral",

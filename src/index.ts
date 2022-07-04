@@ -1,5 +1,5 @@
 import { ClusterClient, InteractionCommandClient } from "detritus-client";
-import { ActivityTypes, PresenceStatuses } from 'detritus-client/lib/constants';
+import { ActivityTypes, GatewayIntents, PresenceStatuses } from 'detritus-client/lib/constants';
 
 import fs from "fs";
 import path from "path";
@@ -9,10 +9,14 @@ import * as config from "./config.json";
 const cluster = new ClusterClient(config.token, {
     gateway: {
         loadAllMembers: true,
-        intents: "ALL",
+        intents: [
+            GatewayIntents.GUILDS,
+            GatewayIntents.GUILD_MEMBERS,
+            GatewayIntents.GUILD_PRESENCES
+        ],
         presence: {
             activity: {
-                name: "the dust",
+                name: "for /help",
                 type: ActivityTypes.WATCHING
             },
             status: PresenceStatuses.ONLINE

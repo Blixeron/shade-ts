@@ -7,13 +7,9 @@ interface CommandArgs {
     question: string;
 }
 
-export const COMMAND_NAME = "8ball";
-
-export default class EightBallCommand extends BaseSlashCommand<CommandArgs> {
-    name = COMMAND_NAME;
+export default class EightBallCommand extends BaseSlashCommand {
+    name = "8ball";
     description = "Ask the magic 8 ball a question";
-
-    metadata = { category: "Fun" };
 
     constructor() {
         super({

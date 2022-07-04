@@ -1,4 +1,4 @@
-import { Interaction, Structures } from "detritus-client";
+import { Interaction } from "detritus-client";
 import { ApplicationCommandOptionTypes } from 'detritus-client/lib/constants';
 
 import { BaseSlashCommand } from "../../baseCommand";
@@ -7,10 +7,8 @@ interface CommandArgs {
     choice: string;
 }
 
-export const COMMAND_NAME = "rps";
-
-export default class RpsCommand extends BaseSlashCommand<CommandArgs> {
-    name = COMMAND_NAME;
+export default class RpsCommand extends BaseSlashCommand {
+    name = "rps";
     description = "Rock, Paper, Scissors!";
 
     constructor() {

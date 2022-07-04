@@ -2,10 +2,8 @@ import { Interaction } from "detritus-client";
 
 import { BaseSlashCommand } from "../../baseCommand";
 
-export const COMMAND_NAME = "ping";
-
 export default class PingCommand extends BaseSlashCommand {
-    name = COMMAND_NAME;
+    name = "ping";
     description = "Check my latency";
 
     async run(context: Interaction.InteractionContext) {

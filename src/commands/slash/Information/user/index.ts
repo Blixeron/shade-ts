@@ -3,10 +3,8 @@ import { BaseSlashCommand } from "../../../baseCommand";
 import { UserAvatarCommand } from "./avatar";
 import { UserInformationCommand } from "./information";
 
-export const COMMAND_NAME = "user";
-
 export default class UserGroupCommand extends BaseSlashCommand {
-    name = COMMAND_NAME;
+    name = "user";
     description = "Check things about a Discord user";
 
     constructor() {

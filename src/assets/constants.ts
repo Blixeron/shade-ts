@@ -1,4 +1,12 @@
-import { UserFlags, PresenceStatuses, ApplicationCommandOptionTypes } from "detritus-client/lib/constants";
+import {
+    UserFlags,
+    PresenceStatuses,
+    ApplicationCommandOptionTypes,
+    GuildExplicitContentFilterTypes,
+    DetritusKeys,
+    DiscordKeys,
+    MfaLevels
+} from "detritus-client/lib/constants";
 
 export const OptionTypes = Object.freeze({
     [ApplicationCommandOptionTypes.SUB_COMMAND]: "Subcommand",
@@ -28,9 +36,34 @@ export const DiscordUserFlags = Object.freeze({
     [UserFlags.DISCORD_CERTIFIED_MODERATOR]: "<:certifiedmoderator:991072075991113770>"
 });
 
-export const DiscordStatus = Object.freeze({
+export const DiscordClientStatus = Object.freeze([
+    DetritusKeys[DiscordKeys.DESKTOP],
+    DetritusKeys[DiscordKeys.MOBILE],
+    DetritusKeys[DiscordKeys.WEB]
+]);
+
+export const DiscordStatus: Record<string, string> = Object.freeze({
     [PresenceStatuses.ONLINE]: "<:online:932734237487034378> Online",
     [PresenceStatuses.IDLE]: "<:idle:932734218562310254>  Idle",
     [PresenceStatuses.DND]: "<:dnd:932734228871905460> Do Not Disturb",
     [PresenceStatuses.OFFLINE]: "<:offline:932734228121153597> Offline or Invisible"
+});
+
+export const GuildVerificationLevel = Object.freeze({
+    [0]: "Unrestricted",
+    [1]: "Members must have a verified email in their Discord account",
+    [2]: "Members must be registered on Discord for longer than 5 minutes",
+    [3]: "Members must be members of this server for longer than 10 minutes",
+    [4]: "Members must have a verified phone number in their Discord account"
+});
+
+export const GuildExplicitContentFilter = Object.freeze({
+    [GuildExplicitContentFilterTypes.DISABLED]: "Not scanning media content",
+    [GuildExplicitContentFilterTypes.MEMBERS_WITHOUT_ROLES]: "Scanning media from members without roles",
+    [GuildExplicitContentFilterTypes.ALL_MEMBERS]: "Scanning media from all the members"
+});
+
+export const GuildMfaLevel = Object.freeze({
+    [MfaLevels.NONE]: "Not required",
+    [MfaLevels.ELEVATED]: "Required to moderate",
 });

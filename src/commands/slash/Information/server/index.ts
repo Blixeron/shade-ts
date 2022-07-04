@@ -1,11 +1,10 @@
 import { BaseSlashCommand } from "../../../baseCommand";
 
 import { ServerIconCommand } from "./icon";
-
-export const COMMAND_NAME = "server";
+import { ServerInformationCommand } from "./information";
 
 export default class UserGroupCommand extends BaseSlashCommand {
-    name = COMMAND_NAME;
+    name = "server";
     description = "Check things about the current server";
 
     disableDm = true;
@@ -13,7 +12,8 @@ export default class UserGroupCommand extends BaseSlashCommand {
     constructor() {
         super({
             options: [
-                new ServerIconCommand()
+                new ServerIconCommand(),
+                new ServerInformationCommand()
             ],
         });
     }

@@ -12,10 +12,8 @@ interface CommandArgs {
     command?: string;
 }
 
-export const COMMAND_NAME = "help";
-
-export default class HelpCommand extends BaseSlashCommand<CommandArgs> {
-    name = COMMAND_NAME;
+export default class HelpCommand extends BaseSlashCommand {
+    name = "help";
     description = "Get help about how to use my commands";
 
     constructor() {
@@ -95,6 +93,7 @@ ${tree1.b}   Type: ${OptionTypes[option1.type]} ${(option1.type == 1 || option1.
                     const optionsEmbed = new Embed;
 
                     optionsEmbed.setTitle("Command Options");
+
                     optionsEmbed.setDescription(`\`\`\`${options1.join("\n│")}\`\`\``);
 
                     return context.editOrRespond({ embeds: [embed, optionsEmbed] });
@@ -103,9 +102,13 @@ ${tree1.b}   Type: ${OptionTypes[option1.type]} ${(option1.type == 1 || option1.
                 return context.editOrRespond({ embeds: [embed] });
             }
         } else {
+            embed.setTitle("Showing all commands");
+
             categories.filter(category => category.name !== "Owner").forEach(category => {
                 embed.addField(category.name, category.commands.join(", "));
             });
+
+            embed.setFooter("Use the 'command' option to get more information about a command.");
 
             return context.editOrRespond({ embeds: [embed] });
         }
