@@ -1,5 +1,5 @@
 import { Interaction } from "detritus-client";
-import { ApplicationCommandOptionTypes } from 'detritus-client/lib/constants';
+import { ApplicationCommandOptionTypes, MessageFlags } from 'detritus-client/lib/constants';
 
 import { BaseSlashCommand } from "../../baseCommand";
 
@@ -40,6 +40,13 @@ export default class EightBallCommand extends BaseSlashCommand {
             "✨ Y E S ✨", "✨ N O ✨", "✨ I D K ✨"
         ];
 
-        return context.editOrRespond(`${(args.question.endsWith("?") ? args.question : `${args.question}?`).substring(0, 1900)}\n${answers[Math.floor(Math.random() * answers.length)]}`);
+        if (args.question.length > 1900) {
+            return context.editOrRespond({
+                content: "That's a bit too long for me to answer.",
+                flags: MessageFlags.EPHEMERAL
+            });
+        }
+
+        return context.editOrRespond(`${args.question.endsWith("?") ? args.question : `${args.question}?`}\n${answers[Math.floor(Math.random() * answers.length)]}`);
     }
 }

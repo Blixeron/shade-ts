@@ -3,6 +3,7 @@ import { MessageFlags } from "detritus-client/lib/constants";
 import { Embed } from "detritus-client/lib/utils";
 
 import { DiscordStatus, DiscordUserFlags } from "../../../../assets/constants";
+import { escapeBold } from "../../escapeBold";
 
 import { toTitleCase } from "../../toTitleCase";
 
@@ -37,7 +38,7 @@ export async function userInformation(context: Interaction.InteractionContext, t
         const member = context.guild.members.cache.get(target.id);
 
         embed.addField(`Server`, `
-**Nick:** ${member?.nick || "None"}
+**Nick:** ${member?.nick ? escapeBold(member?.nick) : "None"}
 **Boosting:** ${member?.premiumSince ? `Since <t:${Math.ceil(member!.premiumSinceUnix / 1000)}>` : "No"}
 **Joined at:** <t:${Math.ceil(member!.joinedAtUnix / 1000)}>
             `, true);
