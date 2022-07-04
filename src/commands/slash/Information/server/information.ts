@@ -63,7 +63,6 @@ ${context.guild?.roles.sort((a, b) => b?.position - a?.position).filter(role => 
         embed.addField("Links", `
 **Icon:** ${context.guild?.icon ? `[Link](${context.guild?.iconUrl?.slice(0, -3)}${context.guild?.icon?.startsWith("a_") ? "gif" : "png"}?size=1024)` : "None"}
 **Banner:** ${context.guild?.banner ? `[Link](${context.guild?.bannerUrl?.slice(0, -3)}${context.guild?.icon?.startsWith("a_") ? "gif" : "png"}?size=1024)` : "None"}
-
         `);
 
         context.editOrRespond({ embeds: [embed] });

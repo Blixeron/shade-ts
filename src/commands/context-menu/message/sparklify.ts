@@ -1,7 +1,7 @@
 import { Interaction } from "detritus-client";
 import { Message } from "detritus-client/lib/structures";
 
-import { emojify } from "../../../utils/functions/commands/Fun/emojify";
+import { sparklify } from "../../../utils/functions/commands/Fun/sparklify";
 
 import { BaseContextMenuMessageCommand, ContextMenuMessageArgs } from "../../baseCommand";
 
@@ -9,10 +9,10 @@ interface CommandArgs extends ContextMenuMessageArgs {
     message: Message;
 }
 
-export default class EmojifyCommand extends BaseContextMenuMessageCommand {
-    name = "Emojify";
+export default class SparklifyCommand extends BaseContextMenuMessageCommand {
+    name = "Sparklify";
 
     async run(context: Interaction.InteractionContext, args: CommandArgs) {
-        emojify(context, args.message.content);
+        sparklify(context, args.message.content);
     }
 }

@@ -3,7 +3,8 @@ import { ApplicationCommandOptionTypes } from 'detritus-client/lib/constants';
 
 import { BaseSlashCommand } from "../../baseCommand";
 
-import * as emojis from "../../../assets/emojis.json";
+import { emojify } from "../../../utils/functions/commands/Fun/emojify";
+import { sparklify } from "../../../utils/functions/commands/Fun/sparklify";
 
 interface CommandArgs {
     input: string;
@@ -41,31 +42,17 @@ export default class RpsCommand extends BaseSlashCommand {
     async run(context: Interaction.InteractionContext, args: CommandArgs) {
         switch (args.type) {
             case "emojify": {
-                const input = args.input.split(" ");
-                let count = 0;
-
-                while (count < input.length) {
-                    count += Math.floor(Math.random() * 5);
-                    const text = input[count];
-
-                    if (text) {
-                        input[count] = `${text} ${emojis.all[Math.floor(Math.random() * emojis.all.length)]}`;
-                    }
-                }
-
-                return context.editOrRespond(`${input.join(" ")} ${emojis.all[Math.floor(Math.random() * emojis.all.length)]}`.substring(0, 2000));
-            } break;
+                return emojify(context, args.input);
+            }
 
             case "reverse": {
                 const reversedText = args.input.split("").reverse();
 
                 return context.editOrRespond(`${reversedText.join("")}`.substring(0, 2000));
-            } break;
+            }
 
             case "sparklify": {
-                const sparklifiedText = args.input.toUpperCase().split("");
-
-                return context.editOrRespond(`✨ ${String(sparklifiedText.join(" ")).substring(0, 1994)} ✨`);
+                return sparklify(context, args.input);
             }
         }
     }

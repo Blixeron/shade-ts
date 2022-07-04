@@ -21,7 +21,7 @@ export default class HelpCommand extends BaseSlashCommand {
             options: [
                 {
                     name: "command",
-                    description: "Select a command to get help about",
+                    description: "Type the name of a command to get help about it",
                     required: false,
                     type: ApplicationCommandOptionTypes.STRING,
                 }
