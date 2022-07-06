@@ -5,7 +5,8 @@ import {
     GuildExplicitContentFilterTypes,
     DetritusKeys,
     DiscordKeys,
-    MfaLevels
+    MfaLevels,
+    VerificationLevels
 } from "detritus-client/lib/constants";
 
 export const OptionTypes = Object.freeze({
@@ -50,11 +51,11 @@ export const DiscordStatus: Record<string, string> = Object.freeze({
 });
 
 export const GuildVerificationLevel = Object.freeze({
-    [0]: "Unrestricted",
-    [1]: "Members must have a verified email in their Discord account",
-    [2]: "Members must be registered on Discord for longer than 5 minutes",
-    [3]: "Members must be members of this server for longer than 10 minutes",
-    [4]: "Members must have a verified phone number in their Discord account"
+    [VerificationLevels.NONE]: "Unrestricted",
+    [VerificationLevels.LOW]: "Members must have a verified email in their Discord account",
+    [VerificationLevels.MEDIUM]: "Members must be registered on Discord for longer than 5 minutes",
+    [VerificationLevels.HIGH]: "Members must be members of this server for longer than 10 minutes",
+    [VerificationLevels.VERY_HIGH]: "Members must have a verified phone number in their Discord account"
 });
 
 export const GuildExplicitContentFilter = Object.freeze({

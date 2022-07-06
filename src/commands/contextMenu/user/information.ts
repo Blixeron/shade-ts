@@ -1,6 +1,6 @@
 import { Interaction, Structures } from "detritus-client";
 
-import { userInformation } from "../../../utils/functions/commands/Information/user-information";
+import { userInformation } from "../../../utils/functions/commands/Information/userInformation";
 
 import { BaseContextMenuUserCommand, ContextMenuUserArgs } from "../../baseCommand";
 

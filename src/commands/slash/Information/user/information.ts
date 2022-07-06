@@ -1,7 +1,7 @@
 import { Interaction, Structures } from "detritus-client";
 import { ApplicationCommandOptionTypes } from 'detritus-client/lib/constants';
 
-import { userInformation } from "../../../../utils/functions/commands/Information/user-information";
+import { userInformation } from "../../../../utils/functions/commands/Information/userInformation";
 
 import { BaseCommandOption } from "../../../baseCommand";
 

@@ -26,10 +26,6 @@ export class BaseInteractionCommand<ParsedArgsFinished = Interaction.ParsedArgs>
         return true;
     }
 
-    onBeforeRun(context: Interaction.InteractionContext, args: ParsedArgsFinished) {
-        return true;
-    }
-
     onRunError(context: Interaction.InteractionContext, args: ParsedArgsFinished, error: any) {
         console.log(error);
     }
