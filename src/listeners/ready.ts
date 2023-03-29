@@ -1,6 +1,5 @@
-import { commands } from "..";
-
 import { Listener } from "../structures/listener";
+import { commands } from "..";
 
 export default new Listener({
     name: "ready",

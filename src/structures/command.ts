@@ -1,16 +1,16 @@
-import { ApplicationCommandData } from "discord.js";
+import { ApplicationCommandData, PermissionsString } from "discord.js";
 
 type CommandOptions = {
     data: ApplicationCommandData;
     ownerOnly?: boolean;
-    disableDm?: boolean;
+    botPermissions?: Array<PermissionsString>;
     run: (...args: any) => any;
 };
 
 export class Command {
     public data: CommandOptions["data"];
     public ownerOnly: boolean;
-    public disableDm: boolean;
+    public botPermissions: CommandOptions["botPermissions"];
     public run: CommandOptions["run"];
 
     constructor(options: CommandOptions) {

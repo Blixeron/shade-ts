@@ -9,10 +9,6 @@ export default new Command({
 
     run: async (interaction: ChatInputCommandInteraction) => {
         await interaction.reply({ content: "🏓", fetchReply: true });
-
-        return interaction.editReply(`
-Latency is **${~~interaction.client.ws.ping}ms.**
-Response time is **${~~(Date.now() - interaction.createdTimestamp)}ms.**
-        `);
+        return interaction.editReply(`Latency is **${~~interaction.client.ws.ping}ms.**`);
     }
 });
