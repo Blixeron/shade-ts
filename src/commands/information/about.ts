@@ -2,6 +2,7 @@ import { ChatInputCommandInteraction, EmbedBuilder, User } from 'discord.js';
 import { Command } from '../../utils/commands';
 import packages from '../../../package.json';
 import { commands } from '../../utils/commands';
+import * as emojis from '../../assets/emojis.json';
 
 export default new Command({
     data: {
@@ -12,7 +13,13 @@ export default new Command({
     run: async (interaction: ChatInputCommandInteraction) => {
         const embed = new EmbedBuilder()
             .setTitle(interaction.client.user.username)
-            .setDescription(interaction.client.application.description)
+            .setDescription(`
+${interaction.client.application.description}
+
+${emojis.githubIcon} [Check out my source code on GitHub!](https://github.com/Drazkai/shade-ts)
+☕ [Buy my developer a coffee!](https://buymeacoffee.com/Drazkai)
+            `
+            )
             .setThumbnail(interaction.client.user.avatarURL({ extension: 'png', size: 1024 }))
             .addFields(
                 {
