@@ -24,7 +24,7 @@ export default new Command({
         await userInformation({
             interaction: interaction,
             target: interaction.options.getUser('target') || interaction.user,
-            ephemeral: interaction.options.getBoolean('show_permissions')
+            showPermissions: interaction.options.getBoolean('show_permissions')
         });
     }
 });

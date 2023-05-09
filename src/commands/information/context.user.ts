@@ -12,7 +12,6 @@ export default new Command({
         await userInformation({
             interaction: interaction,
             target: interaction.targetUser,
-            showPermissions: null,
             ephemeral: true
         });
     }
