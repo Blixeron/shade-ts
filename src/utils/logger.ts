@@ -1,28 +1,45 @@
 export namespace Logger {
-    export class Formatting {
-        static reset = '\x1B[0m';
+    export enum Types {
+        reset = '\x1B[0m',
 
         // Formats
-        static bold = '\x1B[1m';
-        static italic = '\x1B[3m';
-        static underline = '\x1B[4m';
+        bold = '\x1B[1m',
+        italic ='\x1B[3m',
+        underline = '\x1B[4m',
 
         // Colors
-        static red = '\x1B[38;5;1m';
-        static green = '\x1B[38;5;2m';
-        static yellow = '\x1B[38;5;3m';
-        static blue = '\x1B[38;5;4m';
-        static pink = '\x1B[38;5;5m';
-        static cyan = '\x1B[38;5;6m';
+        red = '\x1B[38;5;1m',
+        green = '\x1B[38;5;2m',
+        yellow = '\x1B[38;5;3m',
+        blue = '\x1B[38;5;4m',
+        pink = '\x1B[38;5;5m',
+        cyan = '\x1B[38;5;6m',
     }
 
-    export function log({ message, label, color }: { message: string; label?: string; color?: string; }) {
+    type Formatting = keyof typeof Types;
+
+    /**
+     * Formats a given string to use for logging.
+     * @param {string} input - The string to format.
+     * @param {Formatting | Types} type - The type of the string.
+     * @returns {string} The formatted string.
+     */
+    export function format(input: string, type: Formatting | Types): string {
+        return type + input + '\x1B[0m'
+    }
+
+    /**
+     * Prints a message to the console with a label and time.
+     * @param {string} message - The message to print.
+     * @param {string} label - The label of the message Defaults to 'INFO' in green.
+     * @returns {void}
+     */
+    export function print({ message, label }: { message: string, label?: string }): void {
         const time = new Date();
         const formattedTime = `${time.toLocaleDateString()} ${time.toLocaleTimeString()}`;
 
-        const labelColor = color || Formatting.green;
-        const labelString = label || 'INFO';
+        const labelString = label || format('INFO', 'green');
 
-        return console.log(Formatting.bold + `${formattedTime} ${labelColor}${labelString}   ` + Formatting.reset, message);
+        return console.log(format(`${formattedTime} ${labelString}   `, 'bold') + message);
     }
 }

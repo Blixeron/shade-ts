@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction } from 'discord.js';
-import { Command } from '../../utils/commands';
+import { Command } from '../classes/Command';
 
 export default new Command({
     data: {

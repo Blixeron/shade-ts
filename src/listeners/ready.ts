@@ -1,19 +1,19 @@
-import { Listener } from '../utils/listener';
-import { commands } from '../utils/commands';
-import { Logger } from '../utils/logger';
+import { Listener } from '../classes/Listener';
+import { Shade } from '../classes/Shade';
+import { Logger } from '../utils/Logger';
 
 export default new Listener({
     name: 'ready',
     run: async (client) => {
-        const data = commands.map(command => command.data);
+        const data = (client as Shade).commands.map(command => command.data);
 
         client.application.commands.set(data);
         await client.application.fetch();
 
-        Logger.log({
-            message: `${Logger.Formatting.cyan}${client.user.tag}${Logger.Formatting.reset} is ready - ID: ${client.user.id}`,
-            label: 'READY',
-            color: Logger.Formatting.yellow
+        Logger.print({
+            message: `${Logger.format(client.user.tag, 'cyan')} is ready` +
+                ` | ID: ${Logger.format(client.user.id, 'cyan')}`,
+            label: Logger.format('READY', 'yellow')
         });
     }
 });

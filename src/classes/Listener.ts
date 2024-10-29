@@ -1,8 +1,8 @@
 import { ClientEvents } from 'discord.js';
 
-interface ListenerOptions<key extends keyof ClientEvents> {
-    name: key;
-    run: (...args: ClientEvents[key]) => void;
+interface ListenerOptions<K extends keyof ClientEvents> {
+    name: K;
+    run: (...args: ClientEvents[K]) => void;
 }
 
 export class Listener<key extends keyof ClientEvents> {
