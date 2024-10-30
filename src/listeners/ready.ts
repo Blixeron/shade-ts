@@ -1,6 +1,5 @@
 import { Listener } from '../classes/Listener';
 import { Shade } from '../classes/Shade';
-import { Logger } from '../utils/Logger';
 
 export default new Listener({
     name: 'ready',
@@ -10,10 +9,6 @@ export default new Listener({
         client.application.commands.set(data);
         await client.application.fetch();
 
-        Logger.print({
-            message: `${Logger.format(client.user.tag, 'cyan')} is ready` +
-                ` | ID: ${Logger.format(client.user.id, 'cyan')}`,
-            label: Logger.format('READY', 'yellow')
-        });
+        console.log(`${client.user.tag} is ready | ID: ${client.user.id}`);
     }
 });

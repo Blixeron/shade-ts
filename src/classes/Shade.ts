@@ -5,7 +5,6 @@ import { Client, IntentsBitField, Collection, ClientEvents } from 'discord.js';
 
 import { Command } from './Command';
 import { Listener } from './Listener';
-import { Logger } from '../utils/Logger';
 
 export class Shade extends Client {
     constructor() {
@@ -44,7 +43,7 @@ export class Shade extends Client {
         this.loadListeners();
         
         await this.login(process.env.DISCORD_TOKEN).then(() => {
-            Logger.print({ message: 'Logged in using static token...' });
+            console.log('Logged in using static token...');
         });
     }
 }
